@@ -1,11 +1,18 @@
-import React from "react";
-import "./global.css";
-import "./config/ReactotronConfig";
+import React from 'react';
+import GlobalStyle from './styles/global';
+import './config/ReactotronConfig';
 
-import Routes from "./routes";
+import Routes from './routes';
+
+require('react-web-vector-icons/fonts');
 
 function App() {
-  return <Routes />;
+    return (
+        <>
+            <Routes />
+            <GlobalStyle />
+        </>
+    );
 }
 
 export default App;

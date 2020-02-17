@@ -1,7 +1,7 @@
-import React from "react";
-import { InputTemplate } from "./styles";
+import React from 'react';
+import { InputTemplate } from './styles';
 
-const InputCustom = () => {
-    return <InputTemplate />;
+const InputCustom = props => {
+    return <InputTemplate {...props} />;
 };
 export default InputCustom;

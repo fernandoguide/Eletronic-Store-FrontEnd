@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Container } from './styles.js';
+import { Container } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
 
+require('react-web-vector-icons/fonts');
 export default function Login() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -10,14 +11,15 @@ export default function Login() {
             <InputWithIcon
                 value={user}
                 placeholder="Digite seu usuário"
-                onChangeText={setUser}
-                nameIcon={'stepforward'}
+                onChange={text => setUser(text.target.value)}
+                nameIcon="plane"
             />
             <InputWithIcon
                 value={password}
+                type="password"
                 placeholder="Digite seu usuário"
-                onChangeText={setPassword}
-                nameIcon={'stepforward'}
+                onChange={text => setPassword(text.target.value)}
+                nameIcon={'FaLock'}
             />
         </Container>
     );
