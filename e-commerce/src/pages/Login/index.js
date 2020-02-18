@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
-import { Container } from './styles';
+import { Container, ContainerForm, Form } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
+import CarouselSlider from '../../components/Carousel';
 
-require('react-web-vector-icons/fonts');
 export default function Login() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     return (
         <Container>
-            <InputWithIcon
-                value={user}
-                placeholder="Digite seu usuário"
-                onChange={text => setUser(text.target.value)}
-                nameIcon="plane"
-            />
-            <InputWithIcon
-                value={password}
-                type="password"
-                placeholder="Digite seu usuário"
-                onChange={text => setPassword(text.target.value)}
-                nameIcon={'FaLock'}
-            />
+            <CarouselSlider />
+            <ContainerForm>
+                <Form>
+                    <InputWithIcon
+                        value={user}
+                        placeholder="Digite seu usuário"
+                        onChange={text => setUser(text.target.value)}
+                        nameIcon="FaUser"
+                    />
+                    <InputWithIcon
+                        value={password}
+                        type="password"
+                        placeholder="Digite seu usuário"
+                        onChange={text => setPassword(text.target.value)}
+                        nameIcon="Lock"
+                    />
+                </Form>
+            </ContainerForm>
         </Container>
     );
 }

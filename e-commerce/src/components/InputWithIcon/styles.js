@@ -1,17 +1,19 @@
 import styled from 'styled-components';
-import { FontAwesome } from 'react-web-vector-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import Icon from 'react-web-vector-icons';
+// import { material } from 'styled-icons/material';
 import InputCustom from '../InputCustom';
 import { colors } from '../../styles';
 
-require('react-web-vector-icons/fonts');
 export const InputWithoutBorder = styled(InputCustom)`
     border-style: none;
     margin-left: 15px;
     margin-right: 30px;
     padding-left: 15px;
+    background-color: rgb(11, 10, 13);
 `;
 
-export const CustomIcon = styled(FontAwesome)`
+export const CustomIcon = styled(FontAwesomeIcon)`
     color: ${colors.primary};
 `;
 
@@ -21,7 +23,7 @@ export const Container = styled.div`
     flex-direction: row;
     border-width: 3px;
     border-style: solid;
-    border-color: ${colors.primary};
+    border-color: ${colors.secundary};
     border-radius: 7px;
     margin-top: 20px;
     padding-right: 20;
