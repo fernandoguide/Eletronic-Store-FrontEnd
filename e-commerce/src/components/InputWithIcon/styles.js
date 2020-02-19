@@ -10,7 +10,6 @@ export const InputWithoutBorder = styled(InputCustom)`
     margin-left: 15px;
     margin-right: 30px;
     padding-left: 15px;
-    background-color: rgb(11, 10, 13);
 `;
 
 export const CustomIcon = styled(FontAwesomeIcon)`

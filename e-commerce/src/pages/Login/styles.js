@@ -12,11 +12,13 @@ export const Container = styled.div`
 `;
 export const ContainerForm = styled.div`
     display: flax;
-    width: 35%;
+    width: 40%;
+    padding: 0 60px;
     justify-content: center;
     align-items: center;
-    padding: 0 80px;
     height: 100%;
     background-color: rgb(11, 10, 13);
 `;
-export const Form = styled.div``;
+export const Form = styled.div`
+    width: 100%;
+`;

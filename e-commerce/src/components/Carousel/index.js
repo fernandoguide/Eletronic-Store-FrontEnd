@@ -1,5 +1,8 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
+import { ImageSlider, ButtonSlider } from './styles';
+import pubg from '../../assets/pubg.jpg';
+import setup from '../../assets/setup.jpg';
 
 export default function CarouselSlider() {
     return (
@@ -8,18 +11,15 @@ export default function CarouselSlider() {
             //     <div>Slide: {currentSlide}</div>
             // )}
             renderCenterLeftControls={({ previousSlide }) => (
-                <button onClick={previousSlide}>Previous</button>
+                <ButtonSlider onClick={previousSlide}>Previous</ButtonSlider>
             )}
             renderCenterRightControls={({ nextSlide }) => (
-                <button onClick={nextSlide}>Next</button>
+                <ButtonSlider onClick={nextSlide}>Next</ButtonSlider>
             )}
         >
-            <img src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide1" />
-            <img src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide2" />
-            <img src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide3" />
-            <img src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide4" />
-            <img src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide5" />
-            <img src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide6" />
+            <ImageSlider src={pubg} />
+            <ImageSlider src={setup} />
+            <ImageSlider src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide3" />
         </Carousel>
     );
 }
