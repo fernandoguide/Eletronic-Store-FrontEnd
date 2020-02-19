@@ -1,17 +1,16 @@
 import React from 'react';
-import Carousel from 'nuka-carousel';
-import { ImageSlider, ButtonSlider } from './styles';
+import { ImageSlider, ButtonSlider, CarouselSlider } from './styles';
 import pubg from '../../assets/pubg.jpg';
 import setup from '../../assets/setup.jpg';
 
-export default function CarouselSlider() {
+export default function CarouselSlides() {
     return (
-        <Carousel
+        <CarouselSlider
             // renderTopCenterControls={({ currentSlide }) => (
             //     <div>Slide: {currentSlide}</div>
             // )}
             renderCenterLeftControls={({ previousSlide }) => (
-                <ButtonSlider onClick={previousSlide}>Previous</ButtonSlider>
+                <ButtonSlider onClick={previousSlide}>Back</ButtonSlider>
             )}
             renderCenterRightControls={({ nextSlide }) => (
                 <ButtonSlider onClick={nextSlide}>Next</ButtonSlider>
@@ -20,6 +19,6 @@ export default function CarouselSlider() {
             <ImageSlider src={pubg} />
             <ImageSlider src={setup} />
             <ImageSlider src="https://via.placeholder.com/400/ffffff/c0392b/&text=slide3" />
-        </Carousel>
+        </CarouselSlider>
     );
 }

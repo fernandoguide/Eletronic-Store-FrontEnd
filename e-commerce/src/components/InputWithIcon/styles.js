@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import Icon from 'react-web-vector-icons';
+import Icon from 'react-web-vector-icons';
 // import { material } from 'styled-icons/material';
 import InputCustom from '../InputCustom';
 import { colors } from '../../styles';
@@ -12,7 +11,7 @@ export const InputWithoutBorder = styled(InputCustom)`
     padding-left: 15px;
 `;
 
-export const CustomIcon = styled(FontAwesomeIcon)`
+export const CustomIcon = styled(Icon)`
     color: ${colors.primary};
 `;
 

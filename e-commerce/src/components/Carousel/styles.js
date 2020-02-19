@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Carousel from 'nuka-carousel';
 
 export const ImageSlider = styled.img`
     /* width: 100%; */
@@ -13,4 +14,8 @@ export const ButtonSlider = styled.button`
     color: white;
     border-style: none;
     padding: 10px;
+`;
+
+export const CarouselSlider = styled(Carousel)`
+    
 `;
