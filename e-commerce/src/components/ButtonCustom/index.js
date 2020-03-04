@@ -1,7 +1,7 @@
 import React from 'react';
-import { ButtontTemplate } from './styles';
+import { ButtonTemplate } from './styles';
 
 const ButtonCustom = props => {
-    return <ButtontTemplate {...props} />;
+    return <ButtonTemplate {...props} />;
 };
 export default ButtonCustom;

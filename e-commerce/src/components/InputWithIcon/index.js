@@ -1,5 +1,7 @@
 import React from 'react';
-import { InputWithoutBorder, Container, CustomIcon } from './styles';
+import MaterialIcon from 'material-icons-react';
+import { colors } from '../../styles';
+import { InputWithoutBorder, Container } from './styles';
 
 const InputWithIcon = props => {
     // eslint-disable-next-line
@@ -8,7 +10,7 @@ const InputWithIcon = props => {
         <Container>
             {/* <FontAwesome name="plane" color="cyan" size={50} /> */}
 
-            <CustomIcon icon={nameIcon} size={27} />
+            <MaterialIcon icon={nameIcon} size={23} color={colors.grayDark} />
             <InputWithoutBorder
                 value={value}
                 placeholder={placeholder}

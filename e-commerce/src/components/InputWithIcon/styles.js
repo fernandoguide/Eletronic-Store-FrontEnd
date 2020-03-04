@@ -1,32 +1,34 @@
 import styled from 'styled-components';
-import Icon from 'react-web-vector-icons';
-// import { material } from 'styled-icons/material';
 import InputCustom from '../InputCustom';
 import { colors } from '../../styles';
 
 export const InputWithoutBorder = styled(InputCustom)`
     border-style: none;
-    margin-left: 15px;
-    margin-right: 30px;
-    padding-left: 15px;
-`;
-
-export const CustomIcon = styled(Icon)`
-    color: ${colors.primary};
+    color: rgb(255, 255, 255);
+    margin-left: 10px;
+    font-size: 14px;
 `;
 
 export const Container = styled.div`
     height: 50px;
     display: flex;
     flex-direction: row;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
-    border-color: ${colors.secundary};
+    border-color: ${colors.grayDark};
+    background-color: ${colors.grayFullDark};
     border-radius: 7px;
-    margin-top: 20px;
-    padding-right: 20;
-    padding-left: 20;
+    margin-top: 10px;
+    padding: 15px 21px;
     align-items: center;
     justify-content: center;
-    margin-bottom: 11px;
+    margin-bottom: 10px;
+    transition: all 0.4s;
+    &:hover {
+        border-color: ${colors.primary};
+    }
+    &:focus-within {
+        border-color: ${colors.primary};
+        transition: all 0.7s;
+    }
 `;
