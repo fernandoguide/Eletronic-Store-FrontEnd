@@ -4,12 +4,14 @@ import {
     ContainerForm,
     Form,
     ButtonLogin,
-    LinkForgot,
+    Link,
     DivTabs,
     ButtonTabs,
+    Text,
+    CenterDiv,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
-import CarouselSlides from '../../components/Carousel';
+//import CarouselSlides from '../../components/Carousel';
 import { Tabs, useTabState, usePanelState } from '@bumaga/tabs';
 
 const Tab = ({ children }) => {
@@ -42,7 +44,7 @@ export default function Login() {
 
     return (
         <Container>
-            <CarouselSlides />
+            {/* <CarouselSlides /> */}
 
             <ContainerForm>
                 <Tabs>
@@ -68,9 +70,7 @@ export default function Login() {
                                 }
                                 nameIcon="lock"
                             />
-                            <LinkForgot href="#">
-                                Esqueci minha senha
-                            </LinkForgot>
+                            <Link href="#">Esqueci minha senha</Link>
                             <ButtonLogin
                                 disabled={isLoading}
                                 onClick={!isLoading ? handleSubmit : null}
@@ -79,19 +79,31 @@ export default function Login() {
                                 {isLoading ? 'Loading…' : 'Entrar'}
                             </ButtonLogin>
                         </Form>
+                        <CenterDiv>
+                            <Text>
+                                Não tem uma conta?
+                                <Link href="#">Registre-se</Link>
+                            </Text>
+                        </CenterDiv>
                     </Panel>
                     <Panel>
                         <Form>
                             <InputWithIcon
                                 value={user}
-                                placeholder="Digite seu usuário"
+                                placeholder="Digite seu email"
+                                onChange={text => setUser(text.target.value)}
+                                nameIcon="email"
+                            />
+                            <InputWithIcon
+                                value={user}
+                                placeholder="Digite seu nome"
                                 onChange={text => setUser(text.target.value)}
                                 nameIcon="person"
                             />
                             <InputWithIcon
                                 value={password}
                                 type="password"
-                                placeholder="Digite sua senha"
+                                placeholder="Sua senha secreta"
                                 onChange={text =>
                                     setPassword(text.target.value)
                                 }
@@ -100,7 +112,7 @@ export default function Login() {
                             <InputWithIcon
                                 value={password}
                                 type="password"
-                                placeholder="Repita sua senha"
+                                placeholder="Confirme sua senha secreta"
                                 onChange={text =>
                                     setPassword(text.target.value)
                                 }

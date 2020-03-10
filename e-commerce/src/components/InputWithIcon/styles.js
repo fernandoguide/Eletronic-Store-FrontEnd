@@ -10,13 +10,13 @@ export const InputWithoutBorder = styled(InputCustom)`
 `;
 
 export const Container = styled.div`
-    height: 50px;
+    height: 55px;
     display: flex;
     flex-direction: row;
     border-width: 2px;
     border-style: solid;
-    border-color: ${colors.grayDark};
-    background-color: ${colors.grayFullDark};
+    border-color: ${colors.grayMedium};
+    background-color: ${colors.grayDark};
     border-radius: 7px;
     margin-top: 10px;
     padding: 15px 21px;

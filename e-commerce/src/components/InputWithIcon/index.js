@@ -10,7 +10,7 @@ const InputWithIcon = props => {
         <Container>
             {/* <FontAwesome name="plane" color="cyan" size={50} /> */}
 
-            <MaterialIcon icon={nameIcon} size={23} color={colors.grayDark} />
+            <MaterialIcon icon={nameIcon} size={23} color={colors.grayMedium} />
             <InputWithoutBorder
                 value={value}
                 placeholder={placeholder}

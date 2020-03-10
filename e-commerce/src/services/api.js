@@ -1,16 +1,16 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://',
+    baseURL: 'https://eletronic-store-dot-bandtec.appspot.com',
 });
 
 api.interceptors.request.use(async config => {
-  const token = await localStorage.getItem('token');
+    const token = await localStorage.getItem('token');
 
-  if (token != null) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
+    if (token != null) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
 });
 
 export default api;
