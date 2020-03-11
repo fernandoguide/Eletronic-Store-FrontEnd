@@ -27,6 +27,7 @@ export const Container = styled.div`
     &:hover {
         border-color: ${colors.primary};
     }
+
     &:focus-within {
         border-color: ${colors.primary};
         transition: all 0.7s;

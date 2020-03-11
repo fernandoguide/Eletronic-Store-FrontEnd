@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import swal from 'sweetalert';
 import {
     Container,
     ContainerForm,
@@ -10,14 +9,16 @@ import {
     CenterDiv,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
-import { Types as LoginTypes } from '../../store/ducks/Login'; // eslint-disable-next-line
+import { Types as RegisterTypes } from '../../store/ducks/Register'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function Login() {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [user, setUser] = useState('');
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -29,55 +30,67 @@ export default function Login() {
     async function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
-        if (email === '' || password === '') {
-            swal('Opah!', 'Preencha todos os campos', 'warning');
-
+        if (
+            email === '' ||
+            user === '' ||
+            password1 === '' ||
+            password2 === ''
+        ) {
             setLoading(false);
         } else {
             await dispatch({
-                type: LoginTypes.SET_LOGIN,
+                type: RegisterTypes.SET_REGISTER,
                 payload: {
                     email: email.toLowerCase(),
-                    password: password.toLowerCase(),
+                    password: password1.toLowerCase(),
                 },
             });
-            setLoading(false);
         }
     }
 
     return (
         <Container>
-            {/* <CarouselSlides /> */}
-
             <ContainerForm>
                 <Form>
                     <InputWithIcon
                         value={email}
-                        placeholder="Digite seu usuário"
+                        placeholder="Digite seu email"
                         onChange={text => setEmail(text.target.value)}
+                        nameIcon="email"
+                    />
+                    <InputWithIcon
+                        value={user}
+                        placeholder="Digite seu nome"
+                        onChange={text => setUser(text.target.value)}
                         nameIcon="person"
                     />
                     <InputWithIcon
-                        value={password}
+                        value={password1}
                         type="password"
-                        placeholder="Digite sua senha"
-                        onChange={text => setPassword(text.target.value)}
+                        placeholder="Sua senha secreta"
+                        onChange={text => setPassword1(text.target.value)}
                         nameIcon="lock"
                     />
-                    <Link href="#">Esqueci minha senha</Link>
+                    <InputWithIcon
+                        value={password2}
+                        type="password"
+                        placeholder="Confirme sua senha secreta"
+                        onChange={text => setPassword2(text.target.value)}
+                        nameIcon="lock"
+                    />
+
                     <ButtonLogin
                         disabled={isLoading}
                         onClick={!isLoading ? handleSubmit : null}
                         type="submit"
                     >
-                        {isLoading ? 'Loading…' : 'Entrar'}
+                        {isLoading ? 'Loading…' : 'Registrar'}
                     </ButtonLogin>
                 </Form>
                 <CenterDiv>
-                    <Text>
-                        Não tem uma conta?
-                        <Link href="/Register"> Registre-se</Link>
-                    </Text>
+                    <Link href="/Login">
+                        <Text>Voltar</Text>
+                    </Link>
                 </CenterDiv>
             </ContainerForm>
         </Container>
