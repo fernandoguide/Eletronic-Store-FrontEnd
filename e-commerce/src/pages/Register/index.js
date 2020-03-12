@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 import {
     Container,
     ContainerForm,
     Form,
     ButtonLogin,
-    Link,
+    LinkStyled,
     Text,
     CenterDiv,
+    DivLink,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
 import { Types as RegisterTypes } from '../../store/ducks/Register'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
-export default function Login() {
+export default function Register({ history }) {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
@@ -36,15 +38,29 @@ export default function Login() {
             password1 === '' ||
             password2 === ''
         ) {
+            swal('Opah!', 'Preencha todos os campos', 'warning');
             setLoading(false);
         } else {
-            await dispatch({
-                type: RegisterTypes.SET_REGISTER,
-                payload: {
-                    email: email.toLowerCase(),
-                    password: password1.toLowerCase(),
-                },
-            });
+            // eslint-disable-next-line
+            if (password1 !== password2) {
+                swal('Opah!', 'Senhas Incompatíveis', 'warning');
+                setLoading(false);
+            } else {
+                await dispatch({
+                    type: RegisterTypes.SET_REGISTER,
+                    payload: {
+                        email: email.toLowerCase(),
+                        user: user.toLowerCase(),
+                        password: password1.toLowerCase(),
+                    },
+                });
+                swal('Parabéns!', 'Você se cadastrou com sucesso', 'success');
+                setEmail('');
+                setUser('');
+                setPassword2('');
+                setLoading(false);
+                history.push('/Login');
+            }
         }
     }
 
@@ -53,32 +69,42 @@ export default function Login() {
             <ContainerForm>
                 <Form>
                     <InputWithIcon
+                        name="email"
                         value={email}
+                        type="email"
+                        autocomplete="off"
                         placeholder="Digite seu email"
                         onChange={text => setEmail(text.target.value)}
                         nameIcon="email"
                     />
                     <InputWithIcon
+                        name="user"
                         value={user}
+                        type="text"
+                        autocomplete="off"
                         placeholder="Digite seu nome"
                         onChange={text => setUser(text.target.value)}
                         nameIcon="person"
                     />
                     <InputWithIcon
+                        name="password"
                         value={password1}
                         type="password"
+                        autocomplete="off"
                         placeholder="Sua senha secreta"
                         onChange={text => setPassword1(text.target.value)}
                         nameIcon="lock"
                     />
                     <InputWithIcon
+                        name="password"
                         value={password2}
                         type="password"
+                        autocomplete="off"
                         placeholder="Confirme sua senha secreta"
                         onChange={text => setPassword2(text.target.value)}
                         nameIcon="lock"
                     />
-
+                    <DivLink />
                     <ButtonLogin
                         disabled={isLoading}
                         onClick={!isLoading ? handleSubmit : null}
@@ -88,9 +114,11 @@ export default function Login() {
                     </ButtonLogin>
                 </Form>
                 <CenterDiv>
-                    <Link href="/Login">
-                        <Text>Voltar</Text>
-                    </Link>
+                    <DivLink>
+                        <LinkStyled href="/Login">
+                            <Text>Voltar</Text>
+                        </LinkStyled>
+                    </DivLink>
                 </CenterDiv>
             </ContainerForm>
         </Container>

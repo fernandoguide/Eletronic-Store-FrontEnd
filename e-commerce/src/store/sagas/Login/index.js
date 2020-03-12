@@ -1,13 +1,14 @@
-import { call, put } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import api from '../../../services/api';
 import { Types as LoginTypes } from '../../ducks/Login';
 
-export function* setLogin() {
+export function* setLogin(action) {
     try {
-        const response = yield call(api.get, '');
+        const { email, password } = action.payload;
+        const response = yield api.post('/login', { email, password });
         yield put({
             type: LoginTypes.SET_LOGIN_SUCCESS,
-            data: response.data.value,
+            data: response,
         });
     } catch (error) {
         yield put({ type: LoginTypes.SET_LOGIN_ERROR, error });

@@ -14,6 +14,7 @@ const InputWithIcon = props => {
                 value={value}
                 placeholder={placeholder}
                 onChange={text => onChange(text)}
+                {...props}
             />
         </Container>
     );

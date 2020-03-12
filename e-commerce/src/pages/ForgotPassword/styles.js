@@ -21,11 +21,11 @@ export const ContainerForm = styled.div`
     justify-content: center;
     align-items: center;
 `;
-export const Form = styled.form`
+export const Form = styled.div`
     width: 100%;
 `;
 
-export const ButtonLogin = styled(ButtomCustom)`
+export const ButtonForgot = styled(ButtomCustom)`
     background-color: ${colors.primary};
     &:hover {
         background-color: ${colors.primaryDark};
@@ -35,7 +35,7 @@ export const ButtonLogin = styled(ButtomCustom)`
     }
 `;
 
-export const LinkStyled = styled.a`
+export const Link = styled.a`
     padding: 10px 0px;
     text-decoration: none;
     font-size: 14px;

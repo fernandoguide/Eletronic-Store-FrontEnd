@@ -12,6 +12,6 @@ export const ButtonTemplate = styled.button`
     font-size: 16px;
     transition: background 0.4s ease 0s, color 0.3s ease 0s;
     color: ${colors.white};
-    margin: 25px 0px;
+    margin: 10px 0px;
     cursor: pointer;
 `;

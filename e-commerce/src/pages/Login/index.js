@@ -8,16 +8,17 @@ import {
     Link,
     Text,
     CenterDiv,
+    DivLink,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
 import { Types as LoginTypes } from '../../store/ducks/Login'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
-export default function Login() {
+export default function Login({ history }) {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('eletronicstore2020@gmail.com');
+    const [password, setPassword] = useState('admin');
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -52,19 +53,27 @@ export default function Login() {
             <ContainerForm>
                 <Form>
                     <InputWithIcon
+                        name="email"
                         value={email}
+                        type="email"
+                        autocomplete="off"
                         placeholder="Digite seu usuário"
                         onChange={text => setEmail(text.target.value)}
                         nameIcon="person"
                     />
                     <InputWithIcon
+                        name="password"
                         value={password}
                         type="password"
+                        autocomplete="off"
                         placeholder="Digite sua senha"
                         onChange={text => setPassword(text.target.value)}
                         nameIcon="lock"
                     />
-                    <Link href="#">Esqueci minha senha</Link>
+                    <DivLink>
+                        <Link href="/ForgotPassword">Esqueci minha senha</Link>
+                    </DivLink>
+
                     <ButtonLogin
                         disabled={isLoading}
                         onClick={!isLoading ? handleSubmit : null}
@@ -74,10 +83,12 @@ export default function Login() {
                     </ButtonLogin>
                 </Form>
                 <CenterDiv>
-                    <Text>
-                        Não tem uma conta?
-                        <Link href="/Register"> Registre-se</Link>
-                    </Text>
+                    <DivLink>
+                        <Text>
+                            Não tem uma conta?
+                            <Link href="/Register"> Registre-se</Link>
+                        </Text>
+                    </DivLink>
                 </CenterDiv>
             </ContainerForm>
         </Container>

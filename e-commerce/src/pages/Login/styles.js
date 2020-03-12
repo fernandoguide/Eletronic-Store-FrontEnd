@@ -36,25 +36,22 @@ export const ButtonLogin = styled(ButtomCustom)`
 `;
 
 export const Link = styled.a`
-    padding: 10px 0px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    opacity: 0.8;
     align-self: flex-start;
     transition: all 0.3s;
-    color: ${colors.primaryDark};
+    color: ${colors.primary};
     cursor: pointer;
     &:hover {
         opacity: 0.9;
-        color: ${colors.primary};
+        color: ${colors.primaryDark};
     }
 `;
 
-export const DivTabs = styled.div`
+export const DivLink = styled.div`
     width: 100%;
-    /* border-bottom: solid 2px ${colors.grayDark}; */
-    margin-bottom: 25px;
+    margin: 25px 0px;
 `;
 
 export const ButtonTabs = styled.button`
