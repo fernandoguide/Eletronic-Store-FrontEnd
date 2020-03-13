@@ -9,11 +9,11 @@ export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/Login" component={Login} />
-                <Route exact path="/Register" component={Register} />
+                <Route path="/Login" exact component={Login} />
+                <Route path="/Register" exact component={Register} />
                 <Route
-                    exact
                     path="/ForgotPassword"
+                    exact
                     component={ForgotPassword}
                 />
                 <Route path="*" component={() => <h1>Page not found</h1>} />

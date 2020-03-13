@@ -17,7 +17,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function ForgotPassword({ history }) {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('eletronicstore2020@gmail.com');
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function ForgotPassword({ history }) {
             <ContainerForm>
                 <Form>
                     <DivLink>
-                        <Text>Informe seu email cadastrado</Text>
+                        <Text>Email da conta</Text>
                     </DivLink>
 
                     <InputWithIcon

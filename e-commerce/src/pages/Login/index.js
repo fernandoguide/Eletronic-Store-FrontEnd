@@ -10,10 +10,11 @@ import {
     CenterDiv,
     DivLink,
 } from './styles';
+// import api from '../../services/api';
 import InputWithIcon from '../../components/InputWithIcon';
 import { Types as LoginTypes } from '../../store/ducks/Login'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
-
+// eslint-disable-next-line
 export default function Login({ history }) {
     const dispatch = useDispatch();
 
@@ -35,11 +36,16 @@ export default function Login({ history }) {
 
             setLoading(false);
         } else {
+            // const response = await api.post('/login', {
+            //     email: email.toLowerCase(),
+            //     senha: password.toLowerCase(),
+            // });
+            // console.tron.log(response);
             await dispatch({
                 type: LoginTypes.SET_LOGIN,
                 payload: {
                     email: email.toLowerCase(),
-                    password: password.toLowerCase(),
+                    senha: password.toLowerCase(),
                 },
             });
             setLoading(false);

@@ -5,9 +5,10 @@ export default createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
     * {
         margin: 0;
-        /* padding: 0; */
+        padding: 0;
         outline: 0;
         box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
     }
 
     html, border-style, #root{
