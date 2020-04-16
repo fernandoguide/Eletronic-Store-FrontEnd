@@ -11,6 +11,8 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
 `;
 export const ContainerForm = styled.div`
     display: flex-start;

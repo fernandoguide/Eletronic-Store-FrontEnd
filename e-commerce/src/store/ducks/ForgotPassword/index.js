@@ -19,7 +19,7 @@ export default function login(state = INITIAL_STATE, action) {
             return { data: action.data, loading: false, error: '' };
         }
         case Types.SET_FORGOTPASSWORD_ERROR: {
-            return { loading: false, error: action.error, ...state };
+            return { loading: false, error: action.error };
         }
         default:
             return state;

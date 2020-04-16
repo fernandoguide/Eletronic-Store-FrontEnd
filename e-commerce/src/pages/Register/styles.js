@@ -35,19 +35,20 @@ export const ButtonLogin = styled(ButtomCustom)`
     }
 `;
 
-export const LinkStyled = styled.a`
+export const ButtonBackPage = styled.button`
+    background-color: transparent;
+    border-style: none;
     padding: 10px 0px;
-    text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     opacity: 0.8;
-    align-self: flex-start;
     transition: all 0.3s;
-    color: ${colors.primaryDark};
+    margin: 0 auto;
+    color: ${colors.grayLight};
     cursor: pointer;
     &:hover {
         opacity: 0.9;
-        color: ${colors.primary};
+        color: ${colors.white};
     }
 `;
 
@@ -66,10 +67,10 @@ export const ButtonTabs = styled.button`
     }
 `;
 
-export const Text = styled.span`
-    margin: 0 auto;
-    color: ${colors.grayLight};
-`;
+// export const Text = styled.span`
+//     margin: 0 auto;
+//     color: ${colors.grayLight};
+// `;
 
 export const CenterDiv = styled.div`
     width: 100%;

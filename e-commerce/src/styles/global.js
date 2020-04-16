@@ -1,9 +1,23 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 import background from '../assets/images/background.svg';
 
 export default createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
     * {
+        ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+
+}
+/*BARRA DE ROLAGEM*/
+::-webkit-scrollbar-thumb {
+      background-color: #7159C1;
+      border-radius: 3px;
+}
+::-webkit-scrollbar-track-piece{
+    background-color: transparent;
+}
         margin: 0;
         padding: 0;
         outline: 0;

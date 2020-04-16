@@ -5,15 +5,16 @@ import {
     ContainerForm,
     Form,
     ButtonLogin,
-    LinkStyled,
-    Text,
+    ButtonBackPage,
     CenterDiv,
     DivLink,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
+import Logo from '../../components/Header';
 import { Types as RegisterTypes } from '../../store/ducks/Register'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
+// eslint-disable-next-line
 export default function Register({ history }) {
     const dispatch = useDispatch();
 
@@ -59,14 +60,20 @@ export default function Register({ history }) {
                 setUser('');
                 setPassword2('');
                 setLoading(false);
+                // eslint-disable-next-line
                 history.push('/Login');
             }
         }
     }
 
+    function backPage() {
+        window.history.back();
+    }
+
     return (
         <Container>
             <ContainerForm>
+                <Logo />
                 <Form>
                     <InputWithIcon
                         name="email"
@@ -115,9 +122,9 @@ export default function Register({ history }) {
                 </Form>
                 <CenterDiv>
                     <DivLink>
-                        <LinkStyled href="/Login">
-                            <Text>Voltar</Text>
-                        </LinkStyled>
+                        <ButtonBackPage onClick={backPage}>
+                            Voltar
+                        </ButtonBackPage>
                     </DivLink>
                 </CenterDiv>
             </ContainerForm>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import Home from './pages/Main';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
@@ -9,6 +10,7 @@ export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
+                <Route path="/" exact component={Home} />
                 <Route path="/Login" exact component={Login} />
                 <Route path="/Register" exact component={Register} />
                 <Route

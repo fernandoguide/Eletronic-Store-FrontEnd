@@ -5,21 +5,31 @@ export const Types = {
 };
 
 const INITIAL_STATE = {
-    data: [],
+    data: '',
     loading: false,
     error: '',
+    valid: false,
 };
 
 export default function login(state = INITIAL_STATE, action) {
     switch (action.type) {
         case Types.SET_LOGIN: {
-            return { data: [], loading: true, error: '' };
+            return { data: '', loading: true, error: '' };
         }
         case Types.SET_LOGIN_SUCCESS: {
-            return { data: action.data, loading: false, error: '' };
+            return {
+                data: action.data,
+                loading: false,
+                error: '',
+                valid: action.payload.valid,
+            };
         }
         case Types.SET_LOGIN_ERROR: {
-            return { loading: false, error: action.error, ...state };
+            return {
+                error: action.error,
+                loading: false,
+                valid: action.payload.valid,
+            };
         }
         default:
             return state;

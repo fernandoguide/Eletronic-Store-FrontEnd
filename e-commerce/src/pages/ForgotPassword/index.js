@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import swal from 'sweetalert';
+import React, { useState } from 'react';
 import {
     Container,
     ContainerForm,
@@ -11,49 +10,52 @@ import {
     DivLink,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
+import Logo from '../../components/Header';
 import { Types as ForgotTypes } from '../../store/ducks/ForgotPassword'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function ForgotPassword({ history }) {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState('eletronicstore2020@gmail.com');
-    const [isLoading, setLoading] = useState(false);
+    const [email, setEmail] = useState('usuario@gmail.com');
+    const postEmail = useSelector(state => state.ForgotPassword);
 
-    useEffect(() => {
-        if (isLoading) {
-            setLoading(true);
-        }
-    }, [isLoading]);
+    // const [isLoading, setLoading] = useState(false);
+
+    // useEffect(() => {
+    //     if (isLoading) {
+    //         setLoading(true);
+    //     }
+    // }, [isLoading]);
 
     async function handleSubmit(event) {
         event.preventDefault();
-        setLoading(true);
-        if (email === '') {
-            swal(
-                'Opah!',
-                'Parece que você se esqueceu de informar o seu email',
-                'warning'
-            );
-            setLoading(false);
-        } else {
-            await dispatch({
-                type: ForgotTypes.SET_FORGOT,
-                payload: {
-                    email: email.toLowerCase(),
-                },
-            });
-            swal(
-                'Enviado!',
-                'Enviamos para o email informado a sua nova senha',
-                'success'
-            );
-        }
+        // setLoading(true);
+        // if (email === '') {
+        //     swal(
+        //         'Opah!',
+        //         'Parece que você se esqueceu de informar o seu email',
+        //         'warning'
+        //     );
+        //     setLoading(false);
+        // } else {
+        await dispatch({
+            type: ForgotTypes.SET_FORGOTPASSWORD,
+            payload: {
+                email: email.toLowerCase(),
+            },
+        });
+        // swal(
+        //     'Enviado!',
+        //     'Enviamos para o email informado a sua nova senha',
+        //     'success'
+        // );
     }
 
     return (
         <Container>
             <ContainerForm>
+                <Logo />
                 <Form>
                     <DivLink>
                         <Text>Email da conta</Text>
@@ -69,11 +71,11 @@ export default function ForgotPassword({ history }) {
                     />
 
                     <ButtonForgot
-                        disabled={isLoading}
-                        onClick={!isLoading ? handleSubmit : null}
+                        disabled={postEmail.loading}
+                        onClick={handleSubmit}
                         type="submit"
                     >
-                        {isLoading ? 'Loading…' : 'Enviar'}
+                        {postEmail.loading ? 'Loading…' : 'Entrar'}
                     </ButtonForgot>
                 </Form>
                 <CenterDiv>

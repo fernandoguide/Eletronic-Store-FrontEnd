@@ -3,10 +3,9 @@ import InputCustom from '../InputCustom';
 import { colors } from '../../styles';
 
 export const InputWithoutBorder = styled(InputCustom)`
-    border-style: none;
-    color: rgb(255, 255, 255);
-    margin-left: 10px;
+    color: ${colors.white};
     font-size: 14px;
+    padding-left: 50px;
 `;
 
 export const Container = styled.div`
@@ -19,11 +18,16 @@ export const Container = styled.div`
     background-color: ${colors.grayDark};
     border-radius: 7px;
     margin-top: 10px;
-    padding: 15px 21px;
+    /* padding: 15px 21px; */
     align-items: center;
-    justify-content: center;
     margin-bottom: 10px;
     transition: all 0.4s;
+    > i {
+        position: absolute;
+        padding-left: 15px;
+        justify-content: center;
+    }
+
     &:hover {
         border-color: ${colors.primary};
     }
