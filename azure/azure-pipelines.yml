@@ -1,0 +1,54 @@
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: Bash@3
+    displayName: 'Installing NodeJs'
+    inputs:
+      targetType: 'inline'
+      script: sudo apt install nodejs -y
+  - task: Bash@3
+    displayName: 'Installing Node Modules'
+    inputs:
+      targetType: 'inline'
+      script: npm i
+  - task: Bash@3
+    displayName: 'Running Npm Build'
+    inputs:
+      targetType: 'inline'
+      script: npm run build
+  - task: Bash@3
+    displayName: 'Copy GCP - Access Files'
+    inputs:
+      targetType: 'inline'
+      script: cp  azure/service-cre* build
+  - task: Bash@3
+    displayName: 'Copy App Deploy YAML'
+    inputs:
+      targetType: 'inline'
+      script: cp app.yaml build
+  - task: Bash@3
+    displayName: 'Creating Directory to Artificat Deploy'
+    inputs:
+      targetType: 'inline'
+      script: mkdir $(Build.ArtifactStagingDirectory)/bin
+  - task: Bash@3
+    displayName: 'Copy build Folder to Artifact Dir'
+    inputs:
+      targetType: 'inline'
+      script: cp -r build $(Build.ArtifactStagingDirectory)/bin/
+  - task: ArchiveFiles@2
+    displayName: 'Ziping Files'
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/bin'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+  - task: PublishBuildArtifacts@1
+    displayName: 'Copy ZIP to Artifact Folder'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
