@@ -3,21 +3,21 @@ env: standard
 service: eletronicstore
 
 handlers:
-  - url: /static/js/(.*)
-    static_files: /static/js/\1
-    upload: /static/js/(.*)
-  - url: /static/css/(.*)
-    static_files: /static/css/\1
-    upload: /static/css/(.*)
-  - url: /static/media/(.*)
-    static_files: /static/media/\1
-    upload: /static/media/(.*)
+  - url: static/js/(.*)
+    static_files: static/js/\1
+    upload: static/js/(.*)
+  - url: static/css/(.*)
+    static_files: static/css/\1
+    upload: static/css/(.*)
+  - url: static/media/(.*)
+    static_files: static/media/\1
+    upload: static/media/(.*)
   - url: /(.*\.(json|ico))$
     static_files: /\1
     upload: /.*\.(json|ico)$
   - url: /
-    static_files: /index.html
-    upload: /index.html
+    static_files: index.html
+    upload: index.html
   - url: /.*
-    static_files: /index.html
-    upload: /index.html
+    static_files: index.html
+    upload: index.html
