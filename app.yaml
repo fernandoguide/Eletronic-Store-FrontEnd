@@ -4,20 +4,20 @@ api_version: 1
 service: eletronicstore
 handlers:
     - url: /static/js/(.*)
-      static_files: /static/js/\1
-      upload: /static/js/(.*)
+      static_files: build/static/js/\1
+      upload: build/static/js/(.*)
     - url: /static/css/(.*)
-      static_files: /static/css/\1
-      upload: /static/css/(.*)
+      static_files: build/static/css/\1
+      upload: build/static/css/(.*)
     - url: /static/media/(.*)
-      static_files: /static/media/\1
-      upload: /static/media/(.*)
+      static_files: build/static/media/\1
+      upload: build/static/media/(.*)
     - url: /(.*\.(json|ico))$
-      static_files: /\1
-      upload: /.*\.(json|ico)$
+      static_files: build/\1
+      upload: build/.*\.(json|ico)$
     - url: /
-      static_files: /index.html
-      upload: /index.html
+      static_files: build/index.html
+      upload: build/index.html
     - url: /.*
-      static_files: /index.html
-      upload: /index.html
+      static_files: build/index.html
+      upload: build/index.html
