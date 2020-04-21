@@ -1,8 +1,7 @@
-# [START runtime]
-runtime: nodejs
-env: flex
-# [END runtime]
+runtime: nodejs10
+env: standard
 service: eletronicstore
+
 handlers:
   - url: /static/js/(.*)
     static_files: build/static/js/\1
