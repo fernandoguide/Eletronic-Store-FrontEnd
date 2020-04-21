@@ -12,12 +12,10 @@ handlers:
   - url: static/media/(.*)
     static_files: static/media/\1
     upload: static/media/(.*)
-  - url: /(.*\.(json|ico))$
-    static_files: /\1
-    upload: /.*\.(json|ico)$
   - url: /
     static_files: index.html
     upload: index.html
   - url: /.*
     static_files: index.html
     upload: index.html
+
