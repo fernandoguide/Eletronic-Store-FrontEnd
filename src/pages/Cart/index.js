@@ -37,7 +37,9 @@ export default function ShoppingCart() {
                                 products.map(item => (
                                     <tr key={String(item.id)}>
                                         <td>
-                                            {/* <img src={image} alt="imagem" /> */}
+                                            <img
+                                                src={`https://s3.amazonaws.com/eletronic-store/produtos/p${item.id}.jpg`}
+                                            />
                                         </td>
                                         <td>
                                             <strong>{item.nome}</strong>

@@ -38,7 +38,9 @@ export default function Home({ history }) {
                         {products &&
                             products.map(item => (
                                 <li key={String(item.id)}>
-                                    {/* <img src={image} alt="imagem" /> */}
+                                    <img
+                                        src={`https://s3.amazonaws.com/eletronic-store/produtos/p${item.id}.jpg`}
+                                    />
                                     <strong>{item.nome}</strong>
                                     <span>
                                         {Intl.NumberFormat('pt-BR', {
