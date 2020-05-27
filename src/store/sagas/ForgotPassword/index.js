@@ -8,7 +8,10 @@ export function* setForgotPassword(action) {
         const { email } = action.payload;
         if (email === '') {
             toast.warn('Por favor, informar o email da conta');
-            yield put({ type: ForgotTypes.SET_FORGOTPASSWORD_ERROR });
+            yield put({
+                type: ForgotTypes.SET_FORGOTPASSWORD_ERROR,
+                payload: { valid: false },
+            });
         } else {
             const response = yield call(api.post, '/auth/forgot', { email });
 
@@ -18,12 +21,16 @@ export function* setForgotPassword(action) {
                 );
                 yield put({
                     type: ForgotTypes.SET_FORGOTPASSWORD_SUCCESS,
-                    data: 'ok',
+                    payload: { valid: true },
                 });
             }
         }
     } catch (error) {
         toast.error('Email não reconhecido em nossa base de dados');
-        yield put({ type: ForgotTypes.SET_FORGOTPASSWORD_ERROR, error });
+        yield put({
+            type: ForgotTypes.SET_FORGOTPASSWORD_ERROR,
+            error,
+            payload: { valid: false },
+        });
     }
 }

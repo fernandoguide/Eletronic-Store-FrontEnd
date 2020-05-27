@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import swal from 'sweetalert';
+import { Ellipsis } from 'react-spinners-css';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Container,
     ContainerForm,
@@ -10,61 +11,39 @@ import {
     DivLink,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
-import Logo from '../../components/Header';
-import { Types as RegisterTypes } from '../../store/ducks/Register'; // eslint-disable-next-line
-import { useSelector, useDispatch } from 'react-redux';
+import Nav from '../../components/NavBar';
+import { Types as RegisterTypes } from '../../store/ducks/Register';
 
 // eslint-disable-next-line
 export default function Register({ history }) {
     const dispatch = useDispatch();
+    const registerData = useSelector(state => state.Register);
 
-    const [email, setEmail] = useState('');
-    const [user, setUser] = useState('');
-    const [password1, setPassword1] = useState('');
+    const [user, setUser] = useState('João Vinicius');
+    const [email, setEmail] = useState('joaov1@gmail.com');
+    const [password1, setPassword1] = useState('123');
     const [password2, setPassword2] = useState('');
-    const [isLoading, setLoading] = useState(false);
-
-    useEffect(() => {
-        if (isLoading) {
-            setLoading(true);
-        }
-    }, [isLoading]);
 
     async function handleSubmit(event) {
         event.preventDefault();
-        setLoading(true);
-        if (
-            email === '' ||
-            user === '' ||
-            password1 === '' ||
-            password2 === ''
-        ) {
-            swal('Opah!', 'Preencha todos os campos', 'warning');
-            setLoading(false);
-        } else {
-            // eslint-disable-next-line
-            if (password1 !== password2) {
-                swal('Opah!', 'Senhas Incompatíveis', 'warning');
-                setLoading(false);
-            } else {
-                await dispatch({
-                    type: RegisterTypes.SET_REGISTER,
-                    payload: {
-                        email: email.toLowerCase(),
-                        user: user.toLowerCase(),
-                        password: password1.toLowerCase(),
-                    },
-                });
-                swal('Parabéns!', 'Você se cadastrou com sucesso', 'success');
-                setEmail('');
-                setUser('');
-                setPassword2('');
-                setLoading(false);
-                // eslint-disable-next-line
-                history.push('/Login');
-            }
-        }
+
+        await dispatch({
+            type: RegisterTypes.SET_REGISTER,
+            payload: {
+                nome: user,
+                email: email.toLowerCase(),
+                senha: password1,
+                senha2: password2,
+            },
+        });
     }
+
+    useEffect(() => {
+        if (registerData.valid === true) {
+            // eslint-disable-next-line
+            history.push('/login');
+        }
+    }, [registerData]);
 
     function backPage() {
         window.history.back();
@@ -73,7 +52,7 @@ export default function Register({ history }) {
     return (
         <Container>
             <ContainerForm>
-                <Logo />
+                <Nav />
                 <Form>
                     <InputWithIcon
                         name="email"
@@ -113,11 +92,15 @@ export default function Register({ history }) {
                     />
                     <DivLink />
                     <ButtonLogin
-                        disabled={isLoading}
-                        onClick={!isLoading ? handleSubmit : null}
+                        disabled={registerData.loaging}
+                        onClick={handleSubmit}
                         type="submit"
                     >
-                        {isLoading ? 'Loading…' : 'Registrar'}
+                        {registerData.loaging ? (
+                            <Ellipsis color="#be97e8" size={50} />
+                        ) : (
+                            'Registrar'
+                        )}
                     </ButtonLogin>
                 </Form>
                 <CenterDiv>

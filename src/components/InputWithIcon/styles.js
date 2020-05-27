@@ -18,7 +18,6 @@ export const Container = styled.div`
     background-color: ${colors.grayDark};
     border-radius: 7px;
     margin-top: 10px;
-    /* padding: 15px 21px; */
     align-items: center;
     margin-bottom: 10px;
     transition: all 0.4s;

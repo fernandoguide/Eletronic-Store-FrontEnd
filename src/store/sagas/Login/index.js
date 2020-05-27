@@ -19,6 +19,7 @@ export function* setLogin(action) {
             const { authorization } = response.headers;
 
             if (response.status === 200) {
+                toast.success('Seja Bem-Vindo!');
                 yield put({
                     type: LoginTypes.SET_LOGIN_SUCCESS,
                     payload: { valid: true },

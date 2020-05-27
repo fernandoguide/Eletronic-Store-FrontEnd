@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import swal from 'sweetalert';
+import { Ellipsis } from 'react-spinners-css';
 import {
     Container,
     ContainerForm,
@@ -10,7 +10,7 @@ import {
     CenterDiv,
     DivLink,
 } from './styles';
-import Logo from '../../components/Header';
+import Nav from '../../components/NavBar';
 import InputWithIcon from '../../components/InputWithIcon';
 import { Types as LoginTypes } from '../../store/ducks/Login'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,24 +19,12 @@ export default function Login({ history }) {
     const dispatch = useDispatch();
     const loginData = useSelector(state => state.Login);
 
-    const [email, setEmail] = useState('eletronicstore2020@gmail.com');
-    const [password, setPassword] = useState('UFW0011ZjF');
-    // const [isLoading, setLoading] = useState(false);
-
-    // useEffect(() => {
-    //     if (isLoading) {
-    //         setLoading(true);
-    //     }
-    // }, [isLoading]);
+    const [email, setEmail] = useState('eletronicstore2020@outlook.com');
+    const [password, setPassword] = useState('admin');
+    // const [password, setPassword] = useState('UFW0011ZjF');
 
     async function handleSubmit(event) {
         event.preventDefault();
-        // setLoading(true);
-        // if (email === '' || password === '') {
-        //     swal('Opah!', 'Preencha todos os campos', 'warning');
-
-        //     setLoading(false);
-        // } else {
 
         await dispatch({
             type: LoginTypes.SET_LOGIN,
@@ -48,7 +36,8 @@ export default function Login({ history }) {
     }
     useEffect(() => {
         if (loginData.valid === true) {
-            window.history.back();
+            // eslint-disable-next-line
+            history.push('/');
         }
     }, [loginData]);
 
@@ -57,7 +46,7 @@ export default function Login({ history }) {
             {/* <CarouselSlides /> */}
 
             <ContainerForm>
-                <Logo />
+                <Nav />
                 <Form>
                     <InputWithIcon
                         name="email"
@@ -87,7 +76,11 @@ export default function Login({ history }) {
                         // onClick={!isLoading ? handleSubmit : null}
                         type="submit"
                     >
-                        {loginData.loading ? 'Loading…' : 'Entrar'}
+                        {loginData.loading ? (
+                            <Ellipsis color="#be97e8" size={50} />
+                        ) : (
+                            'Entrar'
+                        )}
                     </ButtonLogin>
                 </Form>
                 <CenterDiv>

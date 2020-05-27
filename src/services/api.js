@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://eletronic-store-dot-bandtec.appspot.com',
+    // baseURL: 'https://eletronic-store-dot-bandtec.appspot.com',
+    baseURL: 'http://localhost:8080',
+    // baseURL: 'https://eletronic-store.herokuapp.com/',
 });
 
 api.interceptors.request.use(async config => {

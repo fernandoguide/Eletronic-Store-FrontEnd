@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Ellipsis } from 'react-spinners-css';
 import {
     Container,
     ContainerForm,
@@ -10,52 +11,38 @@ import {
     DivLink,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
-import Logo from '../../components/Header';
+import Nav from '../../components/NavBar';
 import { Types as ForgotTypes } from '../../store/ducks/ForgotPassword'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
+// eslint-disable-next-line
 export default function ForgotPassword({ history }) {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('usuario@gmail.com');
-    const postEmail = useSelector(state => state.ForgotPassword);
-
-    // const [isLoading, setLoading] = useState(false);
-
-    // useEffect(() => {
-    //     if (isLoading) {
-    //         setLoading(true);
-    //     }
-    // }, [isLoading]);
+    const forgotData = useSelector(state => state.ForgotPassword);
 
     async function handleSubmit(event) {
         event.preventDefault();
-        // setLoading(true);
-        // if (email === '') {
-        //     swal(
-        //         'Opah!',
-        //         'Parece que você se esqueceu de informar o seu email',
-        //         'warning'
-        //     );
-        //     setLoading(false);
-        // } else {
+
         await dispatch({
             type: ForgotTypes.SET_FORGOTPASSWORD,
             payload: {
                 email: email.toLowerCase(),
             },
         });
-        // swal(
-        //     'Enviado!',
-        //     'Enviamos para o email informado a sua nova senha',
-        //     'success'
-        // );
     }
+    useEffect(() => {
+        if (forgotData.valid === true) {
+            // eslint-disable-next-line
+            history.push('/login');
+        }
+    }, [forgotData]);
 
     return (
         <Container>
             <ContainerForm>
-                <Logo />
+                <Nav />
                 <Form>
                     <DivLink>
                         <Text>Email da conta</Text>
@@ -71,11 +58,15 @@ export default function ForgotPassword({ history }) {
                     />
 
                     <ButtonForgot
-                        disabled={postEmail.loading}
+                        disabled={forgotData.loading}
                         onClick={handleSubmit}
                         type="submit"
                     >
-                        {postEmail.loading ? 'Loading…' : 'Entrar'}
+                        {forgotData.loading ? (
+                            <Ellipsis color="#be97e8" size={50} />
+                        ) : (
+                            'Enviar'
+                        )}
                     </ButtonForgot>
                 </Form>
                 <CenterDiv>

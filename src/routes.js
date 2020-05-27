@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import Cart from './pages/Cart';
 import Home from './pages/Main';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -11,13 +12,10 @@ export default function Routes() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/Login" exact component={Login} />
-                <Route path="/Register" exact component={Register} />
-                <Route
-                    path="/ForgotPassword"
-                    exact
-                    component={ForgotPassword}
-                />
+                <Route path="/Cart" component={Cart} />
+                <Route path="/Login" component={Login} />
+                <Route path="/Register" component={Register} />
+                <Route path="/ForgotPassword" component={ForgotPassword} />
                 <Route path="*" component={() => <h1>Page not found</h1>} />
             </Switch>
         </BrowserRouter>

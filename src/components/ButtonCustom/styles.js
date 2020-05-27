@@ -14,4 +14,5 @@ export const ButtonTemplate = styled.button`
     color: ${colors.white};
     margin: 10px 0px;
     cursor: pointer;
+    align-items: center;
 `;

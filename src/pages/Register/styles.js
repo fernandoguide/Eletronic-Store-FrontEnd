@@ -13,6 +13,7 @@ export const Container = styled.div`
     align-items: center;
 `;
 export const ContainerForm = styled.div`
+    margin-top: 100px;
     display: flex-start;
     flex-direction: column;
     width: 100%;

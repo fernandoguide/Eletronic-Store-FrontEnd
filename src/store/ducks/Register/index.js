@@ -5,21 +5,29 @@ export const Types = {
 };
 
 const INITIAL_STATE = {
-    data: [],
     loading: false,
     error: '',
+    valid: false,
 };
 
 export default function login(state = INITIAL_STATE, action) {
     switch (action.type) {
         case Types.SET_REGISTER: {
-            return { data: [], loading: true, error: '' };
+            return { loading: true, error: '' };
         }
         case Types.SET_REGISTER_SUCCESS: {
-            return { data: action.data, loading: false, error: '' };
+            return {
+                loading: false,
+                error: '',
+                valid: action.payload.valid,
+            };
         }
         case Types.SET_REGISTER_ERROR: {
-            return { loading: false, error: action.error, ...state };
+            return {
+                loading: false,
+                error: action.error,
+                valid: action.payload.valid,
+            };
         }
         default:
             return state;

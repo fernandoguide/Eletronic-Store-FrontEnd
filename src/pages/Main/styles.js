@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { colors } from '../../styles';
+
+export const Main = styled.div``;
 
 export const Container = styled.div`
-    padding: 100px 150px;
+    margin-left: 300px;
+    padding: 150px 30px;
 `;
 
 export const ProductList = styled.ul`
@@ -15,12 +19,13 @@ export const ProductList = styled.ul`
         display: flex;
         flex-direction: column;
         background: #fff;
-        border-radius: 3px;
+        border-radius: 4px;
         padding: 20px;
+        transition: all 0.2s;
 
         img {
             align-self: center;
-            max-width: 300px;
+            max-width: 230px;
         }
 
         > strong {
@@ -37,7 +42,7 @@ export const ProductList = styled.ul`
         }
 
         button {
-            background: #7159c1;
+            background: ${colors.primary};
             color: #fff;
             border: 0;
             border-radius: 5px;
@@ -48,7 +53,7 @@ export const ProductList = styled.ul`
             transition: background 0.2s;
 
             &:hover {
-                background: ${darken(0.05, '#7159c1')};
+                background: ${darken(0.05, colors.primary)};
             }
 
             div {
@@ -67,6 +72,10 @@ export const ProductList = styled.ul`
                 text-align: center;
                 font-weight: bold;
             }
+        }
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 0px 25px 5px black;
         }
     }
 `;

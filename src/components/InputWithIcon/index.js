@@ -5,7 +5,6 @@ import { InputWithoutBorder, Container } from './styles';
 
 const InputWithIcon = props => {
     // eslint-disable-next-line
-
     const { value, nameIcon, placeholder, onChange } = props;
     return (
         <Container>
