@@ -19,16 +19,6 @@ jobs:
       targetType: 'inline'
       script: npm run build
   - task: Bash@3
-    displayName: 'Copy GCP - Access Files'
-    inputs:
-      targetType: 'inline'
-      script: cp  azure/service-cre* build
-  - task: Bash@3
-    displayName: 'Copy App Deploy YAML'
-    inputs:
-      targetType: 'inline'
-      script: cp app.yaml build
-  - task: Bash@3
     displayName: 'Creating Directory to Artificat Deploy'
     inputs:
       targetType: 'inline'
