@@ -2,6 +2,7 @@ runtime: python27
 threadsafe: true
 api_version: 1
 service: eletronicstore
+
 handlers:
     - url: /static/js/(.*)
       static_files: /static/js/\1
