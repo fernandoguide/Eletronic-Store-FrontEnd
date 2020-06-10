@@ -8,7 +8,7 @@ export const List = styled.ul`
     min-height: 100vh;
     height: 100%;
     background-color: ${colors.grayMedium};
-    padding-top: 130px;
+    padding-top: 120px;
     list-style: none;
     box-shadow: 0px 0px 20px 1px black;
 

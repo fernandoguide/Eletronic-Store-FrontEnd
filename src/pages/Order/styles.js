@@ -44,41 +44,42 @@ export const ProductTable = styled.table`
         text-align: left;
         padding: 12px;
     }
+    tbody tr td section td {
+        display: flex;
+        flex-direction: row;
+    }
+    tbody tr td section {
+        max-height: 300px;
+        overflow-y: auto;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 25px;
+            strong {
+                color: #333;
+            }
+            span {
+                display: block;
+                margin-top: 5px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+    }
+    /* tbody tr td {
+        div {
+
+        }
+    } */
+
     tbody td {
-        max-width: 500px;
         padding: 12px;
         border-bottom: 1px solid #eee;
     }
     img {
         height: 100px;
-    }
-    strong {
-        color: #333;
-        display: block;
-    }
-    span {
-        display: block;
-        margin-top: 5px;
-        font-size: 18px;
-        font-weight: bold;
-    }
-    div {
-        display: flex;
-        align-items: center;
-
-        input {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            color: #666;
-            padding: 6px;
-            width: 50px;
-        }
-    }
-
-    button {
-        background: none;
-        border: 0;
-        padding: 6px;
     }
 `;
 

@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { MdShoppingCart } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Container, Cart, ContentList } from './styles';
+import { Cart } from './styles';
+// eslint-disable-next-line
 import avatar from '../../assets/images/defaultAvatar.png';
+// eslint-disable-next-line
 import ToolTip from '../Tooltip';
+// eslint-disable-next-line
 import ContentToolTipProfile from '../ContentTootipProfile';
 
 const ButtonCart = () => {
@@ -24,7 +26,7 @@ const ButtonCart = () => {
         //     </ToolTip>
         <Cart to="/cart">
             <div>
-                <span>{cartSize}</span>
+                {cartSize > 0 ? <span>{cartSize}</span> : <></>}
                 <MdShoppingCart size={35} color="#FFF" />
             </div>
         </Cart>

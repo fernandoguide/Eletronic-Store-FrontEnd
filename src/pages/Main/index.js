@@ -6,7 +6,7 @@ import { colors } from '../../styles';
 import Nav from '../../components/NavBar';
 import CategoryList from '../../components/CategoryList';
 import { Types as CartTypes } from '../../store/ducks/Cart';
-// import image from '../../assets/pubg.jpg';
+// import { formatPrice } from '../../util/format';
 
 // eslint-disable-next-line
 export default function Home({ history }) {
@@ -16,6 +16,13 @@ export default function Home({ history }) {
     const [products, setProducts] = useState();
     const productsData = useSelector(state => state.Product.data);
 
+    const amount = useSelector(state =>
+        state.Cart.reduce((sumAmount, item) => {
+            sumAmount[item.id] = item.amount;
+            return sumAmount;
+        }, {})
+    );
+
     useEffect(() => {
         setProducts(productsData.produtos);
     }, [productsData]);
@@ -24,8 +31,6 @@ export default function Home({ history }) {
         dispatch({
             type: CartTypes.ADD_CART,
             item,
-            // payload: {
-            // },
         });
     }
     return (
@@ -40,6 +45,7 @@ export default function Home({ history }) {
                                 <li key={String(item.id)}>
                                     <img
                                         src={`https://s3.amazonaws.com/eletronic-store/produtos/p${item.id}.jpg`}
+                                        alt={item.nome}
                                     />
                                     <strong>{item.nome}</strong>
                                     <span>
@@ -58,8 +64,8 @@ export default function Home({ history }) {
                                             <MdAddShoppingCart
                                                 size={16}
                                                 color={colors.white}
-                                            />{' '}
-                                            3
+                                            />
+                                            {amount[item.id] || 0}
                                         </div>
                                         <span>ADICIONAR AO CARRINHO</span>
                                     </button>

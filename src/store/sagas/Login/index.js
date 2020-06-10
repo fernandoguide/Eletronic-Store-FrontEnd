@@ -20,15 +20,22 @@ export function* setLogin(action) {
 
             if (response.status === 200) {
                 toast.success('Seja Bem-Vindo!');
+
                 yield put({
                     type: LoginTypes.SET_LOGIN_SUCCESS,
                     payload: { valid: true },
                 });
+                const dataUser = yield api.get(
+                    `/clientes/email?value=${email}`,
+                    { headers: { Authorization: authorization } }
+                );
+                const { data } = dataUser;
                 yield localStorage.setItem('token', authorization);
+                yield localStorage.setItem('dataUser', JSON.stringify(data));
             }
         }
     } catch (error) {
-        toast.error('Usuário ou senha inválidos');
+        toast.error('Erro ao conectar ao servidor');
         yield put({
             type: LoginTypes.SET_LOGIN_ERROR,
             error,

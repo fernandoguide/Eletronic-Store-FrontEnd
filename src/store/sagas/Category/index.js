@@ -5,7 +5,7 @@ import { Types as CategoryTypes } from '../../ducks/Category';
 export function* setCategory() {
     try {
         const response = yield call(api.get, '/categorias');
-
+        // console.log(response);
         if (response.status === 200) {
             yield put({
                 type: CategoryTypes.GET_CATEGORY_SUCCESS,

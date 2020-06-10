@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import { colors } from '../../styles';
 
-export const Main = styled.div``;
+export const Main = styled.div`
+    max-height: 100vh;
+`;
 
 export const Container = styled.div`
+    height: 100%;
     margin-left: 300px;
-    padding: 150px 30px;
+    padding: 160px 30px;
 `;
 
 export const ProductList = styled.ul`
@@ -18,7 +21,7 @@ export const ProductList = styled.ul`
     li {
         display: flex;
         flex-direction: column;
-        background: #fff;
+        background: ${colors.white};
         border-radius: 4px;
         padding: 20px;
         transition: all 0.2s;
@@ -43,7 +46,7 @@ export const ProductList = styled.ul`
 
         button {
             background: ${colors.primary};
-            color: #fff;
+            color: ${colors.white};
             border: 0;
             border-radius: 5px;
             overflow: hidden;
@@ -77,5 +80,8 @@ export const ProductList = styled.ul`
             transform: translateY(-10px);
             box-shadow: 0px 0px 25px 5px black;
         }
+    }
+    @media (max-width: 1300px) {
+        grid-template-columns: repeat(2, 1fr);
     }
 `;
