@@ -30,6 +30,7 @@ export function* setLogin(action) {
                     { headers: { Authorization: authorization } }
                 );
                 const { data } = dataUser;
+                yield localStorage.clear();
                 yield localStorage.setItem('token', authorization);
                 yield localStorage.setItem('dataUser', JSON.stringify(data));
             }

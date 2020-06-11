@@ -4,12 +4,14 @@ import { Types as RegisterTypes } from '../ducks/Register';
 import { Types as ForgotTypes } from '../ducks/ForgotPassword';
 import { Types as ProductTypes } from '../ducks/Product';
 import { Types as CategoryTypes } from '../ducks/Category';
+import { Types as BuyTypes } from '../ducks/Buy';
 
 import { setLogin } from './Login';
 import { setRegister } from './Register';
 import { setForgotPassword } from './ForgotPassword';
 import { setProduct } from './Product';
 import { setCategory } from './Category';
+import { setBuy } from './Buy';
 
 export default function* rootSaga() {
     return yield all([
@@ -18,5 +20,6 @@ export default function* rootSaga() {
         takeLatest(ForgotTypes.SET_FORGOTPASSWORD, setForgotPassword),
         takeLatest(ProductTypes.GET_PRODUCT, setProduct),
         takeLatest(CategoryTypes.GET_CATEGORY, setCategory),
+        takeLatest(BuyTypes.SET_BUY, setBuy),
     ]);
 }

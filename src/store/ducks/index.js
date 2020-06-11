@@ -6,6 +6,7 @@ import ForgotPassword from './ForgotPassword';
 import Product from './Product';
 import Category from './Category';
 import Cart from './Cart';
+import Buy from './Buy';
 
 export default combineReducers({
     Login,
@@ -14,4 +15,5 @@ export default combineReducers({
     Product,
     Category,
     Cart,
+    Buy,
 });

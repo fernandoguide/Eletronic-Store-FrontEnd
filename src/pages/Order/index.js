@@ -5,10 +5,11 @@ import { Checkbox } from 'reakit/Checkbox';
 import Nav from '../../components/NavBar';
 import { Container, ProductTable, Total } from './styles';
 import { colors } from '../../styles';
-// import { Types as CartTypes } from '../../store/ducks/Cart';
+import { Types as BuyTypes } from '../../store/ducks/Buy';
 import { formatPrice } from '../../util/format';
 
-export default function Order() {
+// eslint-disable-next-line
+export default function Order({ history }) {
     const dispatch = useDispatch();
     const [checkedBoleto, setCheckedBoleto] = useState(true);
     const [checkedCartao, setCheckedCartao] = useState(false);
@@ -33,9 +34,9 @@ export default function Order() {
         state.Cart.reduce((sumAmount, item) => {
             sumAmount[item.id] = item.amount;
             return sumAmount;
-        }, {})
+        }, [])
     );
-    console.tron.log(amount);
+
     const labelStyle = css`
         display: flex;
         align-items: center;
@@ -90,38 +91,38 @@ export default function Order() {
             }, 0)
         )
     );
-    // const pedido = {
-    //     cliente: {
-    //         id: userAcount.id,
-    //     },
-    //     enderecoDeEntrega: {
-    //         id: 2,
-    //     },
-    //     pagamento: {
-    //         '@type': checked ? 'pagamentoComBoleto' : 'pagamentoComCartao',
-    //     },
-    //     itens: [
-    //         {
-    //             quantidade: 1,
-    //             produto: {
-    //                 id: 17,
-    //             },
-    //         },
-    //         {
-    //             quantidade: 1,
-    //             produto: {
-    //                 id: 25,
-    //             },
-    //         },
-    //         {
-    //             quantidade: 5,
-    //             produto: {
-    //                 id: 28,
-    //             },
-    //         },
-    //     ],
-    // };
+    const du = localStorage.getItem('dataUser');
+    const dataUser = JSON.parse(du);
 
+    const pedido = {
+        cliente: {
+            id: dataUser.id,
+        },
+        enderecoDeEntrega: {
+            id: dataUser.enderecos[2].id,
+        },
+
+        pagamento: {
+            '@type': 'pagamentoComBoleto',
+        },
+        itens: productsData.map(item => ({
+            quantidade: item.amount,
+            produto: {
+                id: item.id,
+            },
+        })),
+    };
+    async function handleBuy(event) {
+        //event.preventDefault();
+        history.push('/');
+
+        await dispatch({
+            type: BuyTypes.SET_BUY,
+            payload: {
+                pedido,
+            },
+        });
+    }
     return (
         <>
             <Nav />
@@ -170,14 +171,14 @@ export default function Order() {
                                         />
                                         Boleto
                                     </label>
-                                    <label className={labelStyle}>
+                                    {/* <label className={labelStyle}>
                                         <Checkbox
                                             checked={checkedCartao}
                                             onChange={toggleCartao}
                                             className={checkboxStyle}
                                         />
                                         Cartão
-                                    </label>
+                                    </label> */}
                                 </div>
                             </td>
                         </tr>
@@ -188,7 +189,9 @@ export default function Order() {
                         <span>TOTAL</span>
                         <strong>{total}</strong>
                     </Total>
-                    <button type="button">Comprar</button>
+                    <button type="button" onClick={() => handleBuy()}>
+                        Comprar
+                    </button>
                 </footer>
             </Container>
             {/* </Cart> */}

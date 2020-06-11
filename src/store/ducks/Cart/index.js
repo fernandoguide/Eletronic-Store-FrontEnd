@@ -4,6 +4,7 @@ export const Types = {
     ADD_CART: 'CART/ADD_CART',
     REMOVE_FROM_CART: 'CART/REMOVE_FROM_CART',
     UPDATE_AMOUNT: 'CART/UPDATE_AMOUNT',
+    CLEAR_CART: 'CART/CLEAR_CART',
 };
 
 export default function cart(state = [], action) {
@@ -42,6 +43,10 @@ export default function cart(state = [], action) {
                     draft[productIndex].amount = Number(action.amount);
                 }
             });
+        }
+        case Types.CLEAR_CART: {
+            // eslint-disable-next-line
+            return (state = []);
         }
         default:
             return state;

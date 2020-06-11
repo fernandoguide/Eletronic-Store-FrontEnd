@@ -19,7 +19,7 @@ export default function Login({ history }) {
     const dispatch = useDispatch();
     const loginData = useSelector(state => state.Login);
 
-    const [email, setEmail] = useState('eletronicstore2020@outlook.com');
+    const [email, setEmail] = useState('eletronicstore2020@gmail.com');
     const [password, setPassword] = useState('admin');
     // const [password, setPassword] = useState('UFW0011ZjF');
 
@@ -29,8 +29,8 @@ export default function Login({ history }) {
         await dispatch({
             type: LoginTypes.SET_LOGIN,
             payload: {
-                email: email.toLowerCase(),
-                senha: password,
+                email: email.toLowerCase().trim(),
+                senha: password.trim(),
             },
         });
     }
