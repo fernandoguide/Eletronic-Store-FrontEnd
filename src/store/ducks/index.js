@@ -7,6 +7,8 @@ import Product from './Product';
 import Category from './Category';
 import Cart from './Cart';
 import Buy from './Buy';
+import Cep from './Cep';
+// import Profile from './Profile';
 
 export default combineReducers({
     Login,
@@ -16,4 +18,6 @@ export default combineReducers({
     Category,
     Cart,
     Buy,
+    Cep,
+    // Profile,
 });

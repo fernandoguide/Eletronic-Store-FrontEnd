@@ -5,8 +5,30 @@ import { Types as RegisterTypes } from '../../ducks/Register';
 
 export function* setRegister(action) {
     try {
-        const { nome, email, senha, senha2 } = action.payload;
-        if (nome === '' || email === '' || senha === '' || senha2 === '') {
+        const {
+            nome,
+            email,
+            senha,
+            senha2,
+            telefone,
+            cpf,
+            logradouro,
+            numero,
+            bairro,
+            cep,
+        } = action.payload;
+        if (
+            nome === '' ||
+            email === '' ||
+            senha === '' ||
+            senha2 === '' ||
+            telefone === '' ||
+            cpf === '' ||
+            logradouro === '' ||
+            numero === '' ||
+            bairro === '' ||
+            cep === ''
+        ) {
             toast.warn('Preencha todos os campos');
             yield put({
                 type: RegisterTypes.SET_REGISTER_ERROR,
@@ -25,19 +47,26 @@ export function* setRegister(action) {
                 nome,
                 email,
                 senha,
-                cpfOuCnpj: '31628382740',
+                cpfOuCnpj: cpf,
                 tipo: 1,
-                logradouro: 'Rua do meio',
-                numero: '111',
-                complemento: 'casa 1',
-                bairro: 'Lapa',
-                cep: '02805050',
-                telefone1: '93883321',
+                logradouro,
+                numero,
+                complemento: '',
+                bairro,
+                cep,
+                telefone1: telefone,
                 cidadeId: 2,
             };
             const response = yield call(api.post, '/clientes', corpo);
-            console.tron.log(response);
-            if (response.status === 201) {
+
+            if (response.status !== 201) {
+                toast.error('if de diferente de 201');
+                yield put({
+                    type: RegisterTypes.SET_REGISTER_ERROR,
+                    error: 'Diferente de 201',
+                    payload: { valid: false },
+                });
+            } else {
                 toast.success('Cadastrado com sucesso');
                 yield put({
                     type: RegisterTypes.SET_REGISTER_SUCCESS,

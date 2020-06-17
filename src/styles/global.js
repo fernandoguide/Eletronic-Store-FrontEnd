@@ -10,6 +10,14 @@ export default createGlobalStyle`
     height: 8px;
 
 }
+::-moz-selection{
+background:#7159C1;
+color:#FFF;
+}
+::selection {
+background:#7159C1;
+color:#FFF;
+}
 /*BARRA DE ROLAGEM*/
 ::-webkit-scrollbar-thumb {
       background-color: #7159C1;
@@ -17,6 +25,10 @@ export default createGlobalStyle`
 }
 ::-webkit-scrollbar-track-piece{
     background-color: transparent;
+}
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
 }
         margin: 0;
         padding: 0;

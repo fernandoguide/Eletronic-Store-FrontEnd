@@ -7,6 +7,7 @@ import Order from './pages/Order';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
+import Profile from './pages/Profile';
 
 export default function Routes() {
     return (
@@ -18,6 +19,7 @@ export default function Routes() {
                 <Route path="/Login" component={Login} />
                 <Route path="/Register" component={Register} />
                 <Route path="/ForgotPassword" component={ForgotPassword} />
+                <Route path="/Profile" component={Profile} />
                 <Route path="*" component={() => <h1>Page not found</h1>} />
             </Switch>
         </BrowserRouter>

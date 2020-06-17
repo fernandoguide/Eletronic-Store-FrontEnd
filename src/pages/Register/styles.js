@@ -5,7 +5,7 @@ import { colors } from '../../styles';
 
 export const Container = styled.div`
     margin: 0;
-    padding: 0;
+    padding: 80px 0 0 0;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -13,20 +13,26 @@ export const Container = styled.div`
     align-items: center;
 `;
 export const ContainerForm = styled.div`
-    margin-top: 100px;
     display: flex-start;
     flex-direction: column;
     width: 100%;
-    max-width: 400px;
+    max-width: 550px;
     padding: 0 30px;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 `;
 export const Form = styled.form`
+    margin: 0 auto;
     width: 100%;
+    max-width: 400px;
+    min-height: 40px;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const ButtonLogin = styled(ButtomCustom)`
+    max-width: 400px;
     background-color: ${colors.primary};
     &:hover {
         background-color: ${colors.primaryDark};
