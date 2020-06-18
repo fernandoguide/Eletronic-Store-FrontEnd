@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { colors } from '../../styles';
 import ButtomCustom from '../../components/ButtonCustom';
 import { PopoverDisclosure } from 'reakit/Popover';
+import { darken, lighten } from 'polished';
 
 export const Container = styled.div`
     display: flex;
@@ -10,23 +11,23 @@ export const Container = styled.div`
 `;
 
 export const ButtonLogin = styled(PopoverDisclosure)`
-    margin-top: 10px;
-    margin-right: 20px;
-    width: 90px;
-    height: 50px;
-    border-radius: 7px;
+    margin: 10px 0;
+    margin-right: 25px;
+    padding: 15px 20px;
+    border-radius: 6px;
     border-width: 0px;
     font-weight: bold;
     font-size: 16px;
-    transition: background 0.4s ease 0s, color 0.3s ease 0s;
+    white-space: nowrap;
+    transition: background 0.3s ease 0s, color 0.3s ease 0s;
     color: ${colors.white};
-    background-color: ${colors.primary};
+    background-color: ${colors.grayMedium};
     &:hover {
-        background-color: ${colors.primaryDark};
+        background-color: ${lighten(0.05, colors.grayMedium)};
     }
-    &:focus-within {
+    /* &:focus-within {
         background-color: ${colors.primaryDark};
-    }
+    } */
 `;
 
 export const Cart = styled(Link)`
@@ -34,7 +35,7 @@ export const Cart = styled(Link)`
     align-items: center;
     text-decoration: none;
     transition: opacity 0.2s;
-
+    margin-right: 10px;
     &:hover {
         opacity: 0.7;
     }
@@ -58,7 +59,7 @@ export const Cart = styled(Link)`
         font-size: 12px;
         position: absolute;
         top: 7px;
-        right: 25px;
+        right: 35px;
         width: 21px;
         padding: 3px 0;
         justify-content: center;

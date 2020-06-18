@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
     MdRemoveCircleOutline,
     MdAddCircleOutline,
@@ -30,10 +31,15 @@ export default function ShoppingCart({ history }) {
             }, 0)
         )
     );
-
+    const du = localStorage.getItem('dataUser');
+    const dataUser = JSON.parse(du);
     function checkOut() {
-        // eslint-disable-next-line
-        history.push('/Order');
+        if (!dataUser) {
+            toast.warn('Necessário estar logado para realizar uma compra');
+        } else {
+            // eslint-disable-next-line
+            history.push('/Order');
+        }
     }
 
     function increment(item) {

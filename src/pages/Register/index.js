@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Ellipsis } from 'react-spinners-css';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    Container,
-    ContainerForm,
-    Form,
-    ButtonLogin,
-    ButtonBackPage,
-    CenterDiv,
-    DivLink,
-} from './styles';
-import InputWithIcon from '../../components/InputWithIcon';
-import Nav from '../../components/NavBar';
-import { Types as RegisterTypes } from '../../store/ducks/Register';
-import { Types as CepTypes } from '../../store/ducks/Cep';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { darken } from 'polished';
+import {
+    Container,
+    ContainerForm,
+    Form,
+    ButtonLogin,
+    // ButtonBackPage,
+    CenterDiv,
+    // DivLink,
+} from './styles';
+import Nav from '../../components/NavBar';
+import InputWithIcon from '../../components/InputWithIcon';
+import { Types as CepTypes } from '../../store/ducks/Cep';
+import { Types as RegisterTypes } from '../../store/ducks/Register';
+import { colors } from '../../styles';
+// import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -71,6 +73,9 @@ const style = {
     padding: '0 30px',
     margin: '10px 0px auto',
     textTransform: 'capitalize',
+    '&:hover': {
+        backgroundColor: `${darken(0.05, colors.primary)}`,
+    },
 };
 const styleBackButton = {
     background: '#191920',
@@ -97,16 +102,16 @@ export default function Register({ history }) {
     const registerData = useSelector(state => state.Register);
     const cepData = useSelector(state => state.Cep);
 
-    const [user, setUser] = useState('João Vinicius');
-    const [email, setEmail] = useState('joaov1@gmail.com');
-    const [password1, setPassword1] = useState('123');
-    const [password2, setPassword2] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [telefone, setTelefone] = useState('');
-    const [cep, setCep] = useState('');
-    const [logradouro, setLogradouro] = useState('');
-    const [numero, setNumero] = useState('');
-    const [bairro, setBairro] = useState('');
+    const [user, setUser] = React.useState('João Vinícius');
+    const [email, setEmail] = React.useState('long.joferrary@gmail.com');
+    const [password1, setPassword1] = React.useState('123');
+    const [password2, setPassword2] = React.useState('123');
+    const [cpf, setCpf] = React.useState('50874841828');
+    const [telefone, setTelefone] = React.useState('969705433');
+    const [cep, setCep] = useState('05176030');
+    const [logradouro, setLogradouro] = React.useState('Av. Myrim');
+    const [numero, setNumero] = React.useState('137');
+    const [bairro, setBairro] = React.useState('Vila Clarice');
 
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -387,9 +392,7 @@ export default function Register({ history }) {
                                                     </div>
                                                     <InputWithIcon
                                                         name="bairro"
-                                                        value={
-                                                            cepData.data.bairro
-                                                        }
+                                                        value={bairro}
                                                         type="text"
                                                         autocomplete="off"
                                                         placeholder="Bairro"
@@ -403,10 +406,7 @@ export default function Register({ history }) {
                                                     />
                                                     <InputWithIcon
                                                         name="logradouro"
-                                                        value={
-                                                            cepData.data
-                                                                .logradouro
-                                                        }
+                                                        value={logradouro}
                                                         type="text"
                                                         autocomplete="off"
                                                         placeholder="Logradouro"

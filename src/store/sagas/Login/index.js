@@ -5,6 +5,7 @@ import { Types as LoginTypes } from '../../ducks/Login';
 
 export function* setLogin(action) {
     try {
+        yield localStorage.clear();
         const { email, senha } = action.payload;
         if (email === '' || senha === '') {
             toast.warn('Preencha todos os campos');
@@ -30,7 +31,7 @@ export function* setLogin(action) {
                     { headers: { Authorization: authorization } }
                 );
                 const { data } = dataUser;
-                yield localStorage.clear();
+
                 yield localStorage.setItem('token', authorization);
                 yield localStorage.setItem('dataUser', JSON.stringify(data));
             }

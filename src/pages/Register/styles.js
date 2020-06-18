@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 // import background from '../../assets/images/background.svg';
-import ButtomCustom from '../../components/ButtonCustom';
+import { darken } from 'polished';
 import { colors } from '../../styles';
+import ButtomCustom from '../../components/ButtonCustom';
 
 export const Container = styled.div`
     margin: 0;
@@ -35,11 +36,11 @@ export const ButtonLogin = styled(ButtomCustom)`
     max-width: 400px;
     background-color: ${colors.primary};
     &:hover {
-        background-color: ${colors.primaryDark};
+        background-color: ${darken(0.05, colors.primary)};
     }
-    &:focus-within {
+    /* &:focus-within {
         background-color: ${colors.primaryDark};
-    }
+    } */
 `;
 
 export const ButtonBackPage = styled.button`

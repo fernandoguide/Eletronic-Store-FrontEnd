@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { MdShoppingCart } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { Container, Cart, ButtonLogin } from './styles';
 import { css } from 'emotion';
 import { Button } from 'reakit/Button';
 import { Link } from 'react-router-dom';
@@ -12,6 +11,7 @@ import {
     PopoverArrow,
     PopoverDisclosure,
 } from 'reakit/Popover';
+import { Container, Cart, ButtonLogin } from './styles';
 // eslint-disable-next-line
 import avatar from '../../assets/images/defaultAvatar.png';
 // eslint-disable-next-line
@@ -21,7 +21,7 @@ import ContentToolTipProfile from '../ContentTootipProfile';
 
 const ButtonCart = ({ history }) => {
     const cartSize = useSelector(state => state.Cart.length);
-    const popover = usePopoverState({ animated: 250 });
+    const popover = usePopoverState({ animated: 200 });
     const styles = css`
         display: flex;
         flex-direction: column;
@@ -29,7 +29,7 @@ const ButtonCart = ({ history }) => {
         padding: 16px;
         border: 1px solid rgba(33, 33, 33, 0.25);
         border-radius: 4px;
-        transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+        transition: 200ms ease-in-out, transform 200ms ease-in-out;
         opacity: 0;
         transform-origin: top center;
         transform: translate3d(0, -20px, 0);
@@ -44,10 +44,14 @@ const ButtonCart = ({ history }) => {
             color: '#7159c1';
         }
     `;
+    const du = localStorage.getItem('dataUser');
+    const dataUser = JSON.parse(du);
 
     return (
         <Container>
-            <ButtonLogin {...popover}>Entrar</ButtonLogin>
+            <ButtonLogin {...popover}>
+                {dataUser ? dataUser.nome : 'Entrar'}
+            </ButtonLogin>
             <Popover
                 {...popover}
                 aria-label="Welcome"

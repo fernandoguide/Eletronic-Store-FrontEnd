@@ -30,13 +30,6 @@ export default function Order({ history }) {
         // eslint-disable-next-line
     }, []);
 
-    const amount = useSelector(state =>
-        state.Cart.reduce((sumAmount, item) => {
-            sumAmount[item.id] = item.amount;
-            return sumAmount;
-        }, [])
-    );
-
     const labelStyle = css`
         display: flex;
         align-items: center;
@@ -99,7 +92,7 @@ export default function Order({ history }) {
             id: dataUser.id,
         },
         enderecoDeEntrega: {
-            id: dataUser.enderecos[2].id,
+            id: dataUser.enderecos[0].id,
         },
 
         pagamento: {
