@@ -3,24 +3,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import { css } from 'emotion';
 import { Checkbox } from 'reakit/Checkbox';
 import Nav from '../../components/NavBar';
-import { Container, ProductTable, Total } from './styles';
+import { Container, ProductTable, Total, Endress } from './styles';
 import { colors } from '../../styles';
 import { Types as BuyTypes } from '../../store/ducks/Buy';
 import { formatPrice } from '../../util/format';
+import { Types as ProfileTypes } from '../../store/ducks/Profile';
 
 // eslint-disable-next-line
 export default function Order({ history }) {
     const dispatch = useDispatch();
     const [checkedBoleto, setCheckedBoleto] = useState(true);
-    const [checkedCartao, setCheckedCartao] = useState(false);
+    // const [checkedCartao, setCheckedCartao] = useState(false);
+    // eslint-disable-next-line
     const [userAcount, setUserAcount] = useState();
 
     const toggleBoleto = () => setCheckedBoleto(!checkedBoleto);
-    const toggleCartao = () => setCheckedCartao(!checkedCartao);
+    // eslint-disable-next-line
+    // const toggleCartao = () => setCheckedCartao(!checkedCartao);
 
     const productsData = useSelector(state => state.Cart);
 
+    const ProfileData = useSelector(state => state.Profile);
+
     useEffect(() => {
+        dispatch({
+            type: ProfileTypes.GET_PROFILE,
+        });
         async function getDataUser() {
             const du = await localStorage.getItem('dataUser');
             const dataUser = JSON.parse(du);
@@ -43,11 +51,17 @@ export default function Order({ history }) {
     `;
     const divFormaPagamento = css`
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
-        padding: 20px 50px;
+        padding: 70px 30px;
         margin: 0;
         height: 300px;
+        h3 {
+            text-transform: uppercase;
+            color: #999;
+            text-align: left;
+            padding: 15px 0;
+        }
     `;
     const checkboxStyle = css`
         transition: all 0.4s;
@@ -105,9 +119,11 @@ export default function Order({ history }) {
             },
         })),
     };
-    async function handleBuy(event) {
-        //event.preventDefault();
-        history.push('/');
+
+    async function handleBuy() {
+        // async function handleBuy(event) {
+        // event.preventDefault();
+        history.push('/Bought');
 
         await dispatch({
             type: BuyTypes.SET_BUY,
@@ -164,14 +180,38 @@ export default function Order({ history }) {
                                         />
                                         Boleto
                                     </label>
-                                    {/* <label className={labelStyle}>
-                                        <Checkbox
-                                            checked={checkedCartao}
-                                            onChange={toggleCartao}
-                                            className={checkboxStyle}
-                                        />
-                                        Cartão
-                                    </label> */}
+                                    <div>
+                                        <h3>Endereço</h3>
+                                        <Endress>
+                                            {ProfileData &&
+                                            ProfileData.loading ? (
+                                                <></>
+                                            ) : (
+                                                ProfileData.data.enderecos.map(
+                                                    item => (
+                                                        <li
+                                                            key={String(
+                                                                item.id
+                                                            )}
+                                                        >
+                                                            <span>
+                                                                {item.bairro},{' '}
+                                                            </span>
+                                                            <span>
+                                                                {
+                                                                    item.logradouro
+                                                                }
+                                                                ,{' '}
+                                                            </span>
+                                                            <span>
+                                                                {item.numero}
+                                                            </span>
+                                                        </li>
+                                                    )
+                                                )
+                                            )}
+                                        </Endress>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

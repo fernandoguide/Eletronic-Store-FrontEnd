@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import ButtomCustom from '../../components/ButtonCustom';
 import { colors } from '../../styles';
 
+export const Title = styled.h1`
+    color: ${colors.grayLight};
+`;
 export const Container = styled.div`
     margin: 0;
     padding: 0;
@@ -23,6 +26,10 @@ export const ContainerForm = styled.div`
 `;
 export const Form = styled.div`
     width: 100%;
+    ${Title} {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 `;
 
 export const ButtonForgot = styled(ButtomCustom)`

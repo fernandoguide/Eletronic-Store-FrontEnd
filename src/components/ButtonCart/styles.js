@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { colors } from '../../styles';
-import ButtomCustom from '../../components/ButtonCustom';
 import { PopoverDisclosure } from 'reakit/Popover';
-import { darken, lighten } from 'polished';
+import { lighten } from 'polished';
+import { colors } from '../../styles';
 
 export const Container = styled.div`
     display: flex;

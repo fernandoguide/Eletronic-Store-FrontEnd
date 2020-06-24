@@ -4,6 +4,9 @@ import { darken } from 'polished';
 import { colors } from '../../styles';
 import ButtomCustom from '../../components/ButtonCustom';
 
+export const Title = styled.h1`
+    color: ${colors.grayLight};
+`;
 export const Container = styled.div`
     margin: 0;
     padding: 80px 0 0 0;
@@ -12,6 +15,24 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+export const Link = styled.a`
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: all 0.3s;
+    color: ${colors.primary};
+    cursor: pointer;
+    &:hover {
+        opacity: 0.9;
+        color: ${colors.primaryDark};
+    }
+`;
+export const Text = styled.span`
+    margin: 0 auto;
+    color: ${colors.grayLight};
 `;
 export const ContainerForm = styled.div`
     display: flex-start;
@@ -22,6 +43,10 @@ export const ContainerForm = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    ${Title} {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 `;
 export const Form = styled.form`
     margin: 0 auto;
@@ -34,6 +59,7 @@ export const Form = styled.form`
 
 export const ButtonLogin = styled(ButtomCustom)`
     max-width: 400px;
+    margin: 10px auto;
     background-color: ${colors.primary};
     &:hover {
         background-color: ${darken(0.05, colors.primary)};

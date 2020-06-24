@@ -6,7 +6,8 @@ import { Types as ProductTypes } from '../ducks/Product';
 import { Types as CategoryTypes } from '../ducks/Category';
 import { Types as BuyTypes } from '../ducks/Buy';
 import { Types as CepTypes } from '../ducks/Cep';
-// import { Types as ProfileTypes } from '../ducks/Profile';
+import { Types as AvatarTypes } from '../ducks/Avatar';
+import { Types as ProfileTypes } from '../ducks/Profile';
 
 import { setLogin } from './Login';
 import { setRegister } from './Register';
@@ -15,17 +16,19 @@ import { setProduct } from './Product';
 import { setCategory } from './Category';
 import { setBuy } from './Buy';
 import { getCep } from './Cep';
-// import { getProfile } from './Profile';
+import { setAvatar } from './Avatar';
+import { getProfile } from './Profile';
 
 export default function* rootSaga() {
     return yield all([
-        takeLatest(LoginTypes.SET_LOGIN, setLogin),
-        takeLatest(RegisterTypes.SET_REGISTER, setRegister),
-        takeLatest(ForgotTypes.SET_FORGOTPASSWORD, setForgotPassword),
-        takeLatest(ProductTypes.GET_PRODUCT, setProduct),
-        takeLatest(CategoryTypes.GET_CATEGORY, setCategory),
         takeLatest(BuyTypes.SET_BUY, setBuy),
+        takeLatest(CategoryTypes.GET_CATEGORY, setCategory),
         takeLatest(CepTypes.GET_CEP, getCep),
-        // takeLatest(ProfileTypes.GET_PROFILE, getProfile),
+        takeLatest(ForgotTypes.SET_FORGOTPASSWORD, setForgotPassword),
+        takeLatest(LoginTypes.SET_LOGIN, setLogin),
+        takeLatest(ProductTypes.GET_PRODUCT, setProduct),
+        takeLatest(RegisterTypes.SET_REGISTER, setRegister),
+        takeLatest(AvatarTypes.SET_AVATAR, setAvatar),
+        takeLatest(ProfileTypes.GET_PROFILE, getProfile),
     ]);
 }

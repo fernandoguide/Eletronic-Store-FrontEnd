@@ -7,6 +7,8 @@ import {
     MdAddCircleOutline,
     MdDelete,
 } from 'react-icons/md';
+// import { useHistory } from 'react-router-dom';
+// import history from '../../services/history';
 import { colors } from '../../styles';
 import Nav from '../../components/NavBar';
 import { Container, ProductTable, Total } from './styles';
@@ -16,7 +18,7 @@ import { formatPrice } from '../../util/format';
 // eslint-disable-next-line
 export default function ShoppingCart({ history }) {
     const dispatch = useDispatch();
-
+    // const history = useHistory;
     // const [products, setProducts] = useState([]);
     const productsData = useSelector(state =>
         state.Cart.map(item => ({

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Nav from '../../components/NavBar';
 import InputWithIcon from '../../components/InputWithIcon';
 import avatar from '../../assets/images/defaultAvatar.png';
+import { Types as AvatarTypes } from '../../store/ducks/Avatar';
 import api from '../../services/api';
+import { Types as ProfileTypes } from '../../store/ducks/Profile';
+
 import {
     Container,
     AsideNav,
@@ -13,15 +16,20 @@ import {
     Form,
 } from './styles';
 
-// eslint-disable-next-line
-export default function Order({ history }) {
+export default function Order() {
+    // eslint-disable-next-line
     const dispatch = useDispatch();
-
+    useEffect(() => {
+        dispatch({
+            type: ProfileTypes.GET_PROFILE,
+        });
+    }, []);
+    const ProfileData = useSelector(state => state.Profile);
     const [userAcount, setUserAcount] = useState();
     const [thumbnail, setThumbnail] = useState(null);
-    const [user, setUser] = useState('João Vinicius');
-    const [email, setEmail] = useState('joaov1@gmail.com');
-    const [password1, setPassword1] = useState('123');
+    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
+    const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const [cpf, setCpf] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -30,32 +38,39 @@ export default function Order({ history }) {
     const [numero, setNumero] = useState('');
     const [bairro, setBairro] = useState('');
 
+    const du = localStorage.getItem('dataUser');
+    // eslint-disable-next-line
+    const dataUser = JSON.parse(du);
+
     const previw = useMemo(() => {
         return thumbnail ? URL.createObjectURL(thumbnail) : avatar;
     }, [thumbnail]);
 
     async function handleUpload(event) {
         event.preventDefault();
-        const authorization = localStorage.getItem('token');
+        //const token = await localStorage.getItem('token');
         const data = new FormData();
         data.append('file', thumbnail);
-
-        const response = await api.post('/clientes/picture', data);
-        console.log(response);
+        await dispatch({
+            type: AvatarTypes.SET_AVATAR,
+            payload: {
+                data,
+            },
+        });
+        // api.config.headers.Authorization = token;
+        // const response = await api.post('/clientes/picture', data);
     }
 
     useEffect(() => {
-        async function getDataUser() {
-            const du = await localStorage.getItem('dataUser');
-            const dataUser = JSON.parse(du);
-            setUserAcount(dataUser);
-        }
-        getDataUser();
-        // eslint-disable-next-line
-    }, [userAcount]);
-
-    const du = localStorage.getItem('dataUser');
-    const dataUser = JSON.parse(du);
+        setUser(ProfileData.data.nome);
+        setEmail(ProfileData.data.email);
+        setCpf(ProfileData.data.cpfOuCnpj);
+        setCep(ProfileData.data.enderecos[0].cep);
+        setTelefone(ProfileData.data.telefones[0]);
+        setLogradouro(ProfileData.data.enderecos[0].logradouro);
+        setNumero(ProfileData.data.enderecos[0].numero);
+        setBairro(ProfileData.data.enderecos[0].bairro);
+    }, [ProfileData]);
 
     return (
         <>

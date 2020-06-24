@@ -9,14 +9,16 @@ import {
     Text,
     CenterDiv,
     DivLink,
+    Title,
 } from './styles';
 import InputWithIcon from '../../components/InputWithIcon';
-import Nav from '../../components/NavBar';
+import Nav from '../../components/AlternativeNavBar';
+import history from '../../services/history';
 import { Types as ForgotTypes } from '../../store/ducks/ForgotPassword'; // eslint-disable-next-line
 import { useSelector, useDispatch } from 'react-redux';
 
 // eslint-disable-next-line
-export default function ForgotPassword({ history }) {
+export default function ForgotPassword() {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('usuario@gmail.com');
@@ -34,7 +36,6 @@ export default function ForgotPassword({ history }) {
     }
     useEffect(() => {
         if (forgotData.valid === true) {
-            // eslint-disable-next-line
             history.push('/login');
         }
     }, [forgotData]);
@@ -44,6 +45,7 @@ export default function ForgotPassword({ history }) {
             <ContainerForm>
                 <Nav />
                 <Form>
+                    <Title>Redefinir Senha</Title>
                     <DivLink>
                         <Text>Email da conta</Text>
                     </DivLink>

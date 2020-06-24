@@ -8,16 +8,18 @@ import Category from './Category';
 import Cart from './Cart';
 import Buy from './Buy';
 import Cep from './Cep';
-// import Profile from './Profile';
+import Avatar from './Avatar';
+import Profile from './Profile';
 
 export default combineReducers({
-    Login,
-    Register,
-    ForgotPassword,
-    Product,
-    Category,
-    Cart,
+    Avatar,
     Buy,
+    Cart,
+    Category,
     Cep,
-    // Profile,
+    ForgotPassword,
+    Login,
+    Product,
+    Register,
+    Profile,
 });

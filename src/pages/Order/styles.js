@@ -95,3 +95,16 @@ export const Total = styled.div`
         margin-left: 5px;
     }
 `;
+
+export const Endress = styled.ul`
+    li {
+        top: 0;
+        display: flex;
+        flex-direction: row;
+
+        span {
+            color: ${colors.grayMedium};
+            font-weight: bold;
+        }
+    }
+`;

@@ -8,8 +8,7 @@ import CategoryList from '../../components/CategoryList';
 import { Types as CartTypes } from '../../store/ducks/Cart';
 // import { formatPrice } from '../../util/format';
 
-// eslint-disable-next-line
-export default function Home({ history }) {
+export default function Home() {
     // eslint-disable-next-line
     const dispatch = useDispatch();
 

@@ -1,24 +1,27 @@
-// import { call, put } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 
-// import api from '../../../services/api';
-// import { Types as CepTypes } from '../../ducks/Cep';
+import { Types as ProfileTypes } from '../../ducks/Profile';
 
-// export function* getProfile(action) {
-//     try {
-//         const { cep } = action.payload;
+export function* getProfile() {
+    try {
+        const du = localStorage.getItem('dataUser');
+        const dataUser = JSON.parse(du);
 
-//         const response = yield call(api.get, `/${cep}`);
-
-//         if (response.status === 200) {
-//             yield put({
-//                 type: CepTypes.GET_CEP_SUCCESS,
-//                 data: response.data,
-//             });
-//         }
-//     } catch (error) {
-//         yield put({
-//             type: CepTypes.GET_CEP_ERROR,
-//             error,
-//         });
-//     }
-// }
+        if (dataUser === null) {
+            yield put({
+                type: ProfileTypes.GET_PROFILE_ERROR,
+                error: 'O usuário ainda não logou',
+            });
+        } else {
+            yield put({
+                type: ProfileTypes.GET_PROFILE_SUCCESS,
+                data: dataUser,
+            });
+        }
+    } catch (error) {
+        yield put({
+            type: ProfileTypes.GET_PROFILE_ERROR,
+            error,
+        });
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Ellipsis } from 'react-spinners-css';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Container,
     ContainerForm,
@@ -9,15 +10,17 @@ import {
     Text,
     CenterDiv,
     DivLink,
+    Title,
 } from './styles';
-import Nav from '../../components/NavBar';
+import Nav from '../../components/AlternativeNavBar';
 import InputWithIcon from '../../components/InputWithIcon';
-import { Types as LoginTypes } from '../../store/ducks/Login'; // eslint-disable-next-line
-import { useSelector, useDispatch } from 'react-redux';
+import { Types as LoginTypes } from '../../store/ducks/Login';
+// import history from '../../services/history';
 // eslint-disable-next-line
 export default function Login({ history }) {
     const dispatch = useDispatch();
     const loginData = useSelector(state => state.Login);
+    const ProfileData = useSelector(state => state.Profile);
 
     const [email, setEmail] = useState('long.joferrary@gmail.com');
     const [password, setPassword] = useState('123');
@@ -35,11 +38,10 @@ export default function Login({ history }) {
         });
     }
     useEffect(() => {
-        if (loginData.valid === true) {
-            // eslint-disable-next-line
+        if (ProfileData.valid === true) {
             history.push('/');
         }
-    }, [loginData]);
+    }, [ProfileData]);
 
     return (
         <Container>
@@ -48,6 +50,7 @@ export default function Login({ history }) {
             <ContainerForm>
                 <Nav />
                 <Form>
+                    <Title>Login</Title>
                     <InputWithIcon
                         name="email"
                         value={email}

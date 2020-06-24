@@ -1,7 +1,9 @@
 import { put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '../../../services/api';
+// import history from '../../../services/history';
 import { Types as LoginTypes } from '../../ducks/Login';
+import { Types as ProfileTypes } from '../../ducks/Profile';
 
 export function* setLogin(action) {
     try {
@@ -35,6 +37,9 @@ export function* setLogin(action) {
                 yield localStorage.setItem('token', authorization);
                 yield localStorage.setItem('dataUser', JSON.stringify(data));
             }
+            yield put({
+                type: ProfileTypes.GET_PROFILE,
+            });
         }
     } catch (error) {
         toast.error('Erro ao conectar ao servidor');

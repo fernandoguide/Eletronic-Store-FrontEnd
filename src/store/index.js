@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import Reactotron from '../config/ReactotronConfig';
+// eslint-disable-next-line
+import Reactotron from 'reactotron-react-js';
 
 import reducers from './ducks';
 import sagas from './sagas';

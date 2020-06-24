@@ -7,6 +7,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import { darken } from 'polished';
+// import history from '../../services/history';
 import {
     Container,
     ContainerForm,
@@ -14,9 +15,12 @@ import {
     ButtonLogin,
     // ButtonBackPage,
     CenterDiv,
-    // DivLink,
+    Title,
+    DivLink,
+    Link,
+    Text,
 } from './styles';
-import Nav from '../../components/NavBar';
+import Nav from '../../components/AlternativeNavBar';
 import InputWithIcon from '../../components/InputWithIcon';
 import { Types as CepTypes } from '../../store/ducks/Cep';
 import { Types as RegisterTypes } from '../../store/ducks/Register';
@@ -63,6 +67,7 @@ const useStyles = makeStyles(theme => ({
 const style = {
     background: '#7159c1',
     borderRadius: 6,
+    alignItems: 'center',
     border: 0,
     color: 'white',
     height: 50,
@@ -71,26 +76,26 @@ const style = {
     fontWeight: 'bold',
     maxWidth: '400px',
     padding: '0 30px',
-    margin: '10px 0px auto',
+    margin: '10px auto',
     textTransform: 'capitalize',
     '&:hover': {
         backgroundColor: `${darken(0.05, colors.primary)}`,
     },
 };
-const styleBackButton = {
-    background: '#191920',
-    borderRadius: 6,
-    border: 0,
-    color: '#ccc',
-    height: 50,
-    fontSize: '16px',
-    width: '100%',
-    maxWidth: '400px',
-    fontWeight: 'bold',
-    padding: '0 30px',
-    margin: '10px 0px auto',
-    textTransform: 'capitalize',
-};
+// const styleBackButton = {
+//     background: '#191920',
+//     borderRadius: 6,
+//     border: 0,
+//     color: '#ccc',
+//     height: 50,
+//     fontSize: '16px',
+//     width: '100%',
+//     maxWidth: '400px',
+//     fontWeight: 'bold',
+//     padding: '0 30px',
+//     margin: '10px 0px auto',
+//     textTransform: 'capitalize',
+// };
 
 function getSteps() {
     return ['Dados Pessoais', 'Senha', 'Endereço'];
@@ -102,19 +107,19 @@ export default function Register({ history }) {
     const registerData = useSelector(state => state.Register);
     const cepData = useSelector(state => state.Cep);
 
-    const [user, setUser] = React.useState('João Vinícius');
-    const [email, setEmail] = React.useState('long.joferrary@gmail.com');
-    const [password1, setPassword1] = React.useState('123');
-    const [password2, setPassword2] = React.useState('123');
-    const [cpf, setCpf] = React.useState('50874841828');
-    const [telefone, setTelefone] = React.useState('969705433');
+    const [user, setUser] = useState('João Vinícius');
+    const [email, setEmail] = useState('long.joferrary@gmail.com');
+    const [password1, setPassword1] = useState('123');
+    const [password2, setPassword2] = useState('123');
+    const [cpf, setCpf] = useState('50874841828');
+    const [telefone, setTelefone] = useState('969705433');
     const [cep, setCep] = useState('05176030');
-    const [logradouro, setLogradouro] = React.useState('Av. Myrim');
-    const [numero, setNumero] = React.useState('137');
-    const [bairro, setBairro] = React.useState('Vila Clarice');
+    const [logradouro, setLogradouro] = useState('Av. Myrim');
+    const [numero, setNumero] = useState('137');
+    const [bairro, setBairro] = useState('Vila Clarice');
 
     const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
 
     const handleNext = () => {
@@ -125,9 +130,9 @@ export default function Register({ history }) {
         setActiveStep(prevActiveStep => prevActiveStep - 1);
     };
 
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+    // const handleReset = () => {
+    //     setActiveStep(0);
+    // };
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -172,6 +177,7 @@ export default function Register({ history }) {
         <Container>
             <Nav />
             <ContainerForm>
+                <Title>Cadastro</Title>
                 <div className={classes.root}>
                     <Stepper
                         className={classes.stepper}
@@ -218,7 +224,12 @@ export default function Register({ history }) {
                                         Todos os passos concluidos
                                     </span>
                                 </CenterDiv>
-                                <CenterDiv>
+                                <CenterDiv
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                    }}
+                                >
                                     <ButtonLogin
                                         onClick={handleSubmit}
                                         disabled={registerData.loaging}
@@ -234,7 +245,7 @@ export default function Register({ history }) {
                                         )}
                                     </ButtonLogin>
                                     <Button
-                                        style={styleBackButton}
+                                        // style={styleBackButton}
                                         disabled={activeStep === 0}
                                         onClick={handleBack}
                                         className={
@@ -452,7 +463,12 @@ export default function Register({ history }) {
                                         {getStepContent(activeStep)}
                                     </Typography> */}
                                 <div>
-                                    <CenterDiv>
+                                    <CenterDiv
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                        }}
+                                    >
                                         <Button
                                             disableRipple
                                             variant="contained"
@@ -465,7 +481,7 @@ export default function Register({ history }) {
                                         </Button>
                                         <Button
                                             disableRipple
-                                            style={styleBackButton}
+                                            // style={styleBackButton}
                                             disabled={activeStep === 0}
                                             onClick={handleBack}
                                             className={
@@ -481,62 +497,14 @@ export default function Register({ history }) {
                         )}
                     </div>
                 </div>
-                {/* <InputWithIcon
-                        name="email"
-                        value={email}
-                        type="email"
-                        autocomplete="off"
-                        placeholder="Digite seu email"
-                        onChange={text => setEmail(text.target.value)}
-                        nameIcon="email"
-                    />
-                    <InputWithIcon
-                        name="user"
-                        value={user}
-                        type="text"
-                        autocomplete="off"
-                        placeholder="Digite seu nome"
-                        onChange={text => setUser(text.target.value)}
-                        nameIcon="person"
-                    />
-                    <InputWithIcon
-                        name="password"
-                        value={password1}
-                        type="password"
-                        autocomplete="off"
-                        placeholder="Sua senha secreta"
-                        onChange={text => setPassword1(text.target.value)}
-                        nameIcon="lock"
-                    />
-                    <InputWithIcon
-                        name="password"
-                        value={password2}
-                        type="password"
-                        autocomplete="off"
-                        placeholder="Confirme sua senha secreta"
-                        onChange={text => setPassword2(text.target.value)}
-                        nameIcon="lock"
-                    />
-                    <DivLink />
-                    <ButtonLogin
-                        disabled={registerData.loaging}
-                        onClick={handleSubmit}
-                        type="submit"
-                    >
-                        {registerData.loaging ? (
-                            <Ellipsis color="#be97e8" size={50} />
-                        ) : (
-                            'Registrar'
-                        )}
-                    </ButtonLogin> */}
-                {/* </Form> */}
-                {/* <CenterDiv>
+                <CenterDiv>
                     <DivLink>
-                        <ButtonBackPage onClick={backPage}>
-                            Voltar
-                        </ButtonBackPage>
+                        <Text>
+                            Já possui uma conta?
+                            <Link href="/Login"> Login</Link>
+                        </Text>
                     </DivLink>
-                </CenterDiv> */}
+                </CenterDiv>
             </ContainerForm>
         </Container>
     );

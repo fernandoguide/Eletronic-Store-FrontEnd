@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Cart from './pages/Cart';
+import Bought from './pages/Bought';
 import Home from './pages/Main';
 import Order from './pages/Order';
 import Login from './pages/Login';
@@ -15,6 +16,7 @@ export default function Routes() {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/Cart" component={Cart} />
+                <Route path="/Bought" component={Bought} />
                 <Route path="/Order" component={Order} />
                 <Route path="/Login" component={Login} />
                 <Route path="/Register" component={Register} />
