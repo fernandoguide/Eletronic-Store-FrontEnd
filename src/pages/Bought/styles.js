@@ -9,7 +9,7 @@ export const Title = styled.h1`
     font-weight: bold;
 `;
 export const Container = styled.div`
-    margin: 100px 150px;
+    margin: 120px 150px 0 150px;
     padding: 30px;
     background-color: ${colors.white};
     border-radius: 4px;

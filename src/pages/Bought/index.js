@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 // import { useHistory } from 'react-router-dom';
 // import history from '../../services/history';
 import { colors } from '../../styles';
-import Nav from '../../components/NavBar';
+import Nav from '../../components/AlternativeNavBar';
 import { Container, Title, ButtonBought } from './styles';
 
 // eslint-disable-next-line
@@ -20,7 +20,7 @@ export default function ShoppingCart({ history }) {
     }
     return (
         <>
-            {/* <Nav /> */}
+            <Nav />
 
             <Container>
                 <div>

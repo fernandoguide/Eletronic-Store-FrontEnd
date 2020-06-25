@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const AsideNav = styled.div`
+    position: fixed;
     width: 400px;
     height: 100vh;
     background-color: ${colors.grayMedium};
@@ -21,6 +22,7 @@ export const AsideNav = styled.div`
 `;
 
 export const SectionPerfil = styled.div`
+    margin-left: 400px;
     width: 90%;
     padding: 100px 70px 0 70px;
 `;
@@ -37,6 +39,7 @@ export const NewAvatar = styled.div`
     background-size: cover;
 `;
 export const ButtonProfile = styled(ButtomCustom)`
+    right: 0;
     margin-top: 50px;
     background-color: ${colors.primary};
     max-width: 280px;

@@ -192,6 +192,9 @@ export default function Order() {
                             nameIcon="person_pin_circle"
                         />
                     </Form>
+                    <ButtonProfile type="submit" onClick={() => {}}>
+                        Salvar Mudança
+                    </ButtonProfile>
                 </SectionPerfil>
             </Container>
             {/* </Cart> */}
