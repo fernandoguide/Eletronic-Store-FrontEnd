@@ -43,8 +43,9 @@ export default function Home() {
                             products.map(item => (
                                 <li key={String(item.id)}>
                                     <img
-                                        src={`https://s3.amazonaws.com/eletronic-store/produtos/p${item.id}.jpg`}
-                                        alt={item.nome}
+                                        src={require(`../../assets/todosProdutos/p${item.id}.jpg`)}
+                                        // src={`../../assets/todosProdutos/p${item.id}.jpg`}
+                                        alt=""
                                     />
                                     <strong>{item.nome}</strong>
                                     <span>

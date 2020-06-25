@@ -76,7 +76,8 @@ export default function ShoppingCart({ history }) {
                             <tr key={String(item.id)}>
                                 <td>
                                     <img
-                                        src={`https://s3.amazonaws.com/eletronic-store/produtos/p${item.id}.jpg`}
+                                        src={require(`../../assets/todosProdutos/p${item.id}.jpg`)}
+                                        // src={`https://s3.amazonaws.com/eletronic-store/produtos/p${item.id}.jpg`}
                                         alt={item.nome}
                                     />
                                 </td>

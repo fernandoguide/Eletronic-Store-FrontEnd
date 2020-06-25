@@ -46,20 +46,20 @@ export default function Order() {
         return thumbnail ? URL.createObjectURL(thumbnail) : avatar;
     }, [thumbnail]);
 
-    async function handleUpload(event) {
-        event.preventDefault();
-        //const token = await localStorage.getItem('token');
-        const data = new FormData();
-        data.append('file', thumbnail);
-        await dispatch({
-            type: AvatarTypes.SET_AVATAR,
-            payload: {
-                data,
-            },
-        });
-        // api.config.headers.Authorization = token;
-        // const response = await api.post('/clientes/picture', data);
-    }
+    // async function handleUpload(event) {
+    //     event.preventDefault();
+    //     //const token = await localStorage.getItem('token');
+    //     const data = new FormData();
+    //     data.append('file', thumbnail);
+    //     await dispatch({
+    //         type: AvatarTypes.SET_AVATAR,
+    //         payload: {
+    //             data,
+    //         },
+    //     });
+    //     // api.config.headers.Authorization = token;
+    //     // const response = await api.post('/clientes/picture', data);
+    // }
 
     useEffect(() => {
         setUser(ProfileData.data.nome);
@@ -92,7 +92,7 @@ export default function Order() {
                             />
                         </NewAvatar>
                     </label>
-                    <ButtonProfile type="submit" onClick={handleUpload}>
+                    <ButtonProfile type="submit" onClick={() => {}}>
                         Salvar Foto
                     </ButtonProfile>
                 </AsideNav>
