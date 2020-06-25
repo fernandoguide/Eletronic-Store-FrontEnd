@@ -169,6 +169,10 @@ export default function Register({ history }) {
         }
     }, [registerData]);
 
+    useEffect(() => {
+        console.tron.log(cepData);
+    }, [cepData]);
+
     // function backPage() {
     //     window.history.back();
     // }

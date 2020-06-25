@@ -13,11 +13,20 @@ const sagaMonitor =
 
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
 
-const middleware = [sagaMiddleware];
+const enhancer =
+    process.env.NODE_ENV === 'development'
+        ? compose(
+              console.tron.createEnhancer(),
+              applyMiddleware(sagaMiddleware)
+          )
+        : applyMiddleware(sagaMiddleware);
+
+// const middleware = [sagaMiddleware];
 
 const store = createStore(
     reducers,
-    compose(applyMiddleware(...middleware), Reactotron.createEnhancer())
+    enhancer
+    // compose(applyMiddleware(...middleware), Reactotron.createEnhancer())
 );
 
 sagaMiddleware.run(sagas);

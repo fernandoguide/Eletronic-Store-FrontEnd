@@ -43,7 +43,7 @@ export default function Order({ history }) {
         align-items: center;
     `;
     const tdMax = css`
-        max-width: 300px;
+        max-width: 350px;
     `;
     const tdPadding = css`
         padding: 0;
@@ -61,6 +61,13 @@ export default function Order({ history }) {
             color: #999;
             text-align: left;
             padding: 15px 0;
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+        }
+        ul li span {
+            padding: 5px;
         }
     `;
     const checkboxStyle = css`
@@ -100,7 +107,7 @@ export default function Order({ history }) {
     );
     const du = localStorage.getItem('dataUser');
     const dataUser = JSON.parse(du);
-
+    console.log(dataUser);
     const pedido = {
         cliente: {
             id: dataUser.id,
@@ -184,31 +191,19 @@ export default function Order({ history }) {
                                     <div>
                                         <h3>Endereço</h3>
                                         <Endress>
-                                            {ProfileData &&
-                                            ProfileData.loading ? (
-                                                <></>
-                                            ) : (
-                                                ProfileData.data.enderecos.map(
-                                                    item => (
-                                                        <li
-                                                            key={String(
-                                                                item.id
-                                                            )}
-                                                        >
-                                                            <span>
-                                                                {item.bairro},{' '}
-                                                            </span>
-                                                            <span>
-                                                                {
-                                                                    item.logradouro
-                                                                }
-                                                                ,{' '}
-                                                            </span>
-                                                            <span>
-                                                                {item.numero}
-                                                            </span>
-                                                        </li>
-                                                    )
+                                            {ProfileData.data.enderecos.map(
+                                                item => (
+                                                    <li key={String(item.id)}>
+                                                        <span>
+                                                            {item.logradouro}{' '}
+                                                        </span>
+                                                        <span>
+                                                            {item.numero},{' '}
+                                                        </span>
+                                                        <span>
+                                                            {item.bairro}
+                                                        </span>
+                                                    </li>
                                                 )
                                             )}
                                         </Endress>

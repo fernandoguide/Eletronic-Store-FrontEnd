@@ -20,6 +20,7 @@ import { colors } from '../../styles';
 import history from '../../services/history';
 import { Container, Cart, ButtonLogin } from './styles';
 import { Types as ProfileTypes } from '../../store/ducks/Profile';
+import { Types as CartTypes } from '../../store/ducks/Cart';
 // eslint-disable-next-line
 import avatar from '../../assets/images/defaultAvatar.png';
 // eslint-disable-next-line
@@ -98,6 +99,9 @@ const ButtonCart = () => {
         localStorage.clear();
         dispatch({
             type: ProfileTypes.GET_PROFILE,
+        });
+        dispatch({
+            type: CartTypes.CLEAR_CART,
         });
     }
 
