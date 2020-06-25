@@ -21,7 +21,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function ForgotPassword() {
     const dispatch = useDispatch();
 
-    const [email, setEmail] = useState('usuario@gmail.com');
+    const [email, setEmail] = useState('');
     const forgotData = useSelector(state => state.ForgotPassword);
 
     async function handleSubmit(event) {
@@ -67,8 +67,8 @@ export default function ForgotPassword() {
                         {forgotData.loading ? (
                             <Ellipsis color="#be97e8" size={50} />
                         ) : (
-                            'Enviar'
-                        )}
+                                'Enviar'
+                            )}
                     </ButtonForgot>
                 </Form>
                 <CenterDiv>

@@ -22,8 +22,8 @@ export default function Login({ history }) {
     const loginData = useSelector(state => state.Login);
     const ProfileData = useSelector(state => state.Profile);
 
-    const [email, setEmail] = useState('long.joferrary@gmail.com');
-    const [password, setPassword] = useState('123');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     // const [password, setPassword] = useState('UFW0011ZjF');
 
     async function handleSubmit(event) {
@@ -82,8 +82,8 @@ export default function Login({ history }) {
                         {loginData.loading ? (
                             <Ellipsis color="#be97e8" size={50} />
                         ) : (
-                            'Entrar'
-                        )}
+                                'Entrar'
+                            )}
                     </ButtonLogin>
                 </Form>
                 <CenterDiv>

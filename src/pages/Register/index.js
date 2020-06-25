@@ -107,16 +107,18 @@ export default function Register({ history }) {
     const registerData = useSelector(state => state.Register);
     const cepData = useSelector(state => state.Cep);
 
-    const [user, setUser] = useState('João Vinícius');
-    const [email, setEmail] = useState('long.joferrary@gmail.com');
-    const [password1, setPassword1] = useState('123');
-    const [password2, setPassword2] = useState('123');
-    const [cpf, setCpf] = useState('50874841828');
-    const [telefone, setTelefone] = useState('969705433');
-    const [cep, setCep] = useState('05176030');
-    const [logradouro, setLogradouro] = useState('Av. Myrim');
-    const [numero, setNumero] = useState('137');
-    const [bairro, setBairro] = useState('Vila Clarice');
+
+    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [cep, setCep] = useState('');
+    const [logradouro, setLogradouro] = useState('');
+    const [numero, setNumero] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [cidade, setCidade] = useState('');
 
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
@@ -134,6 +136,12 @@ export default function Register({ history }) {
     //     setActiveStep(0);
     // };
 
+    useEffect(() => {
+        setBairro(cepData.data.bairro);
+        setLogradouro(cepData.data.logradouro);
+        setCidade(cepData.data.cidade)
+    }, [cepData]);
+
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -147,9 +155,9 @@ export default function Register({ history }) {
                 telefone: telefone.trim(),
                 cep: cep.trim(),
                 cpf: cpf.trim(),
-                logradouro: !logradouro ? cepData.data.logradouro : logradouro,
+                logradouro: logradouro,
                 numero: numero.trim(),
-                bairro: !bairro ? cepData.data.bairro : bairro,
+                bairro: bairro,
             },
         });
     }
@@ -245,8 +253,8 @@ export default function Register({ history }) {
                                                 size={50}
                                             />
                                         ) : (
-                                            'Registrar'
-                                        )}
+                                                'Registrar'
+                                            )}
                                     </ButtonLogin>
                                     <Button
                                         // style={styleBackButton}
@@ -261,244 +269,258 @@ export default function Register({ history }) {
                                 </CenterDiv>
                             </div>
                         ) : (
-                            <div>
-                                {(() => {
-                                    switch (activeStep) {
-                                        case 0:
-                                            return (
-                                                <Form>
-                                                    <InputWithIcon
-                                                        name="email"
-                                                        value={email}
-                                                        type="email"
-                                                        autocomplete="off"
-                                                        placeholder="Digite seu email"
-                                                        onChange={text =>
-                                                            setEmail(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="email"
-                                                    />
-                                                    <InputWithIcon
-                                                        name="user"
-                                                        value={user}
-                                                        type="text"
-                                                        autocomplete="off"
-                                                        placeholder="Digite seu nome"
-                                                        onChange={text =>
-                                                            setUser(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="person"
-                                                    />
-                                                    <InputWithIcon
-                                                        name="cpf"
-                                                        value={cpf}
-                                                        type="number"
-                                                        autocomplete="off"
-                                                        placeholder="Seu CPF"
-                                                        onChange={text =>
-                                                            setCpf(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="credit_card"
-                                                    />
-                                                    <InputWithIcon
-                                                        name="telefone"
-                                                        value={telefone}
-                                                        type="number"
-                                                        autocomplete="off"
-                                                        placeholder="Seu número de telefone"
-                                                        onChange={text =>
-                                                            setTelefone(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="phone"
-                                                    />
-                                                </Form>
-                                            );
-                                        case 1:
-                                            return (
-                                                <Form>
-                                                    <InputWithIcon
-                                                        name="password"
-                                                        value={password1}
-                                                        type="password"
-                                                        autocomplete="off"
-                                                        placeholder="Sua senha secreta"
-                                                        onChange={text =>
-                                                            setPassword1(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="lock"
-                                                    />
-                                                    <InputWithIcon
-                                                        name="password2"
-                                                        value={password2}
-                                                        type="password"
-                                                        autocomplete="off"
-                                                        placeholder="Confirme sua senha secreta"
-                                                        onChange={text =>
-                                                            setPassword2(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="lock"
-                                                    />
-                                                </Form>
-                                            );
-                                        case 2:
-                                            return (
-                                                <Form>
-                                                    <div
-                                                        style={{
-                                                            display: 'flex',
-                                                            justifyContent:
-                                                                'space-between',
-                                                        }}
-                                                    >
+                                <div>
+                                    {(() => {
+                                        switch (activeStep) {
+                                            case 0:
+                                                return (
+                                                    <Form>
                                                         <InputWithIcon
-                                                            name="cep"
-                                                            value={cep}
-                                                            type="text"
+                                                            name="email"
+                                                            value={email}
+                                                            type="email"
                                                             autocomplete="off"
-                                                            placeholder="Digite o CEP"
+                                                            placeholder="Digite seu email"
                                                             onChange={text =>
-                                                                setCep(
+                                                                setEmail(
                                                                     text.target
                                                                         .value
                                                                 )
                                                             }
-                                                            nameIcon="map"
+                                                            nameIcon="email"
                                                         />
-                                                        <ButtonLogin
-                                                            style={{
-                                                                maxWidth:
-                                                                    '150px',
-                                                            }}
-                                                            disabled={
-                                                                cepData.loading
+                                                        <InputWithIcon
+                                                            name="user"
+                                                            value={user}
+                                                            type="text"
+                                                            autocomplete="off"
+                                                            placeholder="Digite seu nome"
+                                                            onChange={text =>
+                                                                setUser(
+                                                                    text.target
+                                                                        .value
+                                                                )
                                                             }
-                                                            type="submit"
-                                                            onClick={() => {
-                                                                handleCep();
+                                                            nameIcon="person"
+                                                        />
+                                                        <InputWithIcon
+                                                            name="cpf"
+                                                            value={cpf}
+                                                            type="number"
+                                                            autocomplete="off"
+                                                            placeholder="Seu CPF"
+                                                            onChange={text =>
+                                                                setCpf(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="credit_card"
+                                                        />
+                                                        <InputWithIcon
+                                                            name="telefone"
+                                                            value={telefone}
+                                                            type="number"
+                                                            autocomplete="off"
+                                                            placeholder="Seu número de telefone"
+                                                            onChange={text =>
+                                                                setTelefone(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="phone"
+                                                        />
+                                                    </Form>
+                                                );
+                                            case 1:
+                                                return (
+                                                    <Form>
+                                                        <InputWithIcon
+                                                            name="password"
+                                                            value={password1}
+                                                            type="password"
+                                                            autocomplete="off"
+                                                            placeholder="Sua senha secreta"
+                                                            onChange={text =>
+                                                                setPassword1(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="lock"
+                                                        />
+                                                        <InputWithIcon
+                                                            name="password2"
+                                                            value={password2}
+                                                            type="password"
+                                                            autocomplete="off"
+                                                            placeholder="Confirme sua senha secreta"
+                                                            onChange={text =>
+                                                                setPassword2(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="lock"
+                                                        />
+                                                    </Form>
+                                                );
+                                            case 2:
+                                                return (
+                                                    <Form>
+                                                        <div
+                                                            style={{
+                                                                display: 'flex',
+                                                                justifyContent:
+                                                                    'space-between',
                                                             }}
                                                         >
-                                                            {cepData.loaging ? (
-                                                                <Ellipsis
-                                                                    color="#be97e8"
-                                                                    size={50}
-                                                                />
-                                                            ) : (
-                                                                'Buscar CEP'
-                                                            )}
-                                                        </ButtonLogin>
-                                                    </div>
-                                                    <InputWithIcon
-                                                        name="bairro"
-                                                        value={bairro}
-                                                        type="text"
-                                                        autocomplete="off"
-                                                        placeholder="Bairro"
-                                                        onChange={text =>
-                                                            setBairro(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="person_pin_circle"
-                                                    />
-                                                    <InputWithIcon
-                                                        name="logradouro"
-                                                        value={logradouro}
-                                                        type="text"
-                                                        autocomplete="off"
-                                                        placeholder="Logradouro"
-                                                        onChange={text =>
-                                                            setLogradouro(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="home"
-                                                    />
-                                                    <InputWithIcon
-                                                        name="numero"
-                                                        value={numero}
-                                                        type="text"
-                                                        autocomplete="off"
-                                                        placeholder="Número da Casa"
-                                                        onChange={text =>
-                                                            setNumero(
-                                                                text.target
-                                                                    .value
-                                                            )
-                                                        }
-                                                        nameIcon="person_pin_circle"
-                                                    />
-                                                </Form>
-                                            );
-                                        default:
-                                            return (
-                                                <CenterDiv>
-                                                    <span>
-                                                        Todos os passos
-                                                        concluidos
+                                                            <InputWithIcon
+                                                                name="cep"
+                                                                value={cep}
+                                                                type="text"
+                                                                autocomplete="off"
+                                                                placeholder="Digite o CEP"
+                                                                onChange={text =>
+                                                                    setCep(
+                                                                        text.target
+                                                                            .value
+                                                                    )
+                                                                }
+                                                                nameIcon="map"
+                                                            />
+                                                            <ButtonLogin
+                                                                style={{
+                                                                    maxWidth:
+                                                                        '150px',
+                                                                }}
+                                                                disabled={
+                                                                    cepData.loading
+                                                                }
+                                                                type="submit"
+                                                                onClick={() => {
+                                                                    handleCep();
+                                                                }}
+                                                            >
+                                                                {cepData.loaging ? (
+                                                                    <Ellipsis
+                                                                        color="#be97e8"
+                                                                        size={50}
+                                                                    />
+                                                                ) : (
+                                                                        'Buscar CEP'
+                                                                    )}
+                                                            </ButtonLogin>
+                                                        </div>
+                                                        <InputWithIcon
+                                                            name="bairro"
+                                                            value={bairro}
+                                                            type="text"
+                                                            autocomplete="off"
+                                                            placeholder="Bairro"
+                                                            onChange={text =>
+                                                                setBairro(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="person_pin_circle"
+                                                        />
+                                                        <InputWithIcon
+                                                            name="logradouro"
+                                                            value={logradouro}
+                                                            type="text"
+                                                            autocomplete="off"
+                                                            placeholder="Logradouro"
+                                                            onChange={text =>
+                                                                setLogradouro(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="home"
+                                                        />
+                                                        <InputWithIcon
+                                                            name="numero"
+                                                            value={numero}
+                                                            type="text"
+                                                            autocomplete="off"
+                                                            placeholder="Número da Casa"
+                                                            onChange={text =>
+                                                                setNumero(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="person_pin_circle"
+                                                        />
+                                                        <InputWithIcon
+                                                            name="cidade"
+                                                            value={cidade}
+                                                            type="text"
+                                                            autocomplete="off"
+                                                            placeholder="Cidade"
+                                                            onChange={text =>
+                                                                setCidade(
+                                                                    text.target
+                                                                        .value
+                                                                )
+                                                            }
+                                                            nameIcon="person_pin_circle"
+                                                        />
+                                                    </Form>
+                                                );
+                                            default:
+                                                return (
+                                                    <CenterDiv>
+                                                        <span>
+                                                            Todos os passos
+                                                            concluidos
                                                     </span>
-                                                </CenterDiv>
-                                            );
-                                    }
-                                })()}
+                                                    </CenterDiv>
+                                                );
+                                        }
+                                    })()}
 
-                                {/* <Typography
+                                    {/* <Typography
                                         className={classes.instructions}
                                     >
                                         {getStepContent(activeStep)}
                                     </Typography> */}
-                                <div>
-                                    <CenterDiv
-                                        style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                        }}
-                                    >
-                                        <Button
-                                            disableRipple
-                                            variant="contained"
-                                            style={style}
-                                            onClick={handleNext}
+                                    <div>
+                                        <CenterDiv
+                                            style={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                            }}
                                         >
-                                            {activeStep === steps.length - 1
-                                                ? 'Finalizar'
-                                                : 'Proximo'}
+                                            <Button
+                                                disableRipple
+                                                variant="contained"
+                                                style={style}
+                                                onClick={handleNext}
+                                            >
+                                                {activeStep === steps.length - 1
+                                                    ? 'Finalizar'
+                                                    : 'Proximo'}
+                                            </Button>
+                                            <Button
+                                                disableRipple
+                                                // style={styleBackButton}
+                                                disabled={activeStep === 0}
+                                                onClick={handleBack}
+                                                className={
+                                                    (classes.backButton,
+                                                        classes.text)
+                                                }
+                                            >
+                                                Back
                                         </Button>
-                                        <Button
-                                            disableRipple
-                                            // style={styleBackButton}
-                                            disabled={activeStep === 0}
-                                            onClick={handleBack}
-                                            className={
-                                                (classes.backButton,
-                                                classes.text)
-                                            }
-                                        >
-                                            Back
-                                        </Button>
-                                    </CenterDiv>
+                                        </CenterDiv>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
                     </div>
                 </div>
                 <CenterDiv>
