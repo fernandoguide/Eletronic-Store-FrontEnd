@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
-import { Main, Container, ProductList } from './styles';
+import { Main, Container, ProductList, Title } from './styles';
 import { colors } from '../../styles';
 import Nav from '../../components/NavBar';
 import CategoryList from '../../components/CategoryList';
@@ -38,6 +38,7 @@ export default function Home() {
             <Main>
                 <CategoryList />
                 <Container>
+                    <Title>{productsData.nome}</Title>
                     <ProductList>
                         {products &&
                             products.map(item => (

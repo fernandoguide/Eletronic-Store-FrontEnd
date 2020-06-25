@@ -5,14 +5,19 @@ import { colors } from '../../styles';
 export const Main = styled.div`
     max-height: 100vh;
 `;
+export const Title = styled.h1`
+    color: ${colors.grayLight};
+    margin-left: 25px;
+`;
 
 export const Container = styled.div`
     height: 100%;
     margin-left: 300px;
-    padding: 160px 30px;
+    padding: 120px 30px;
 `;
 
 export const ProductList = styled.ul`
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
