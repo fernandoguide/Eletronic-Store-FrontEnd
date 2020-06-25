@@ -19,8 +19,7 @@ import reactotronSaga from 'reactotron-redux-saga';
 // }
 
 const tron = Reactotron.configure({
-    name: 'EletronicStore',
-    host: '192.168.0.16',
+    name: 'EletronicStore'
 })
     .use(reactotronRedux())
     .use(reactotronSaga())
