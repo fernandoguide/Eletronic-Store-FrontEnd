@@ -11,7 +11,7 @@ pipeline {
             steps {
                // sh 'npm run-script build'
                 sh 'sudo rm -rf /usr/share/nginx/html/*'
-                sh 'npm run-script build'
+               // sh 'npm run-script build'
             }
         }
         stage('Delivery') {
