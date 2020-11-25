@@ -15,7 +15,10 @@ pipeline {
         }
         stage('Delivery') {
             steps {
-                //sh 'aws s3 cp --recursive build s3://react-test-nick --region eu-west-2'
+                //sh 'npm run deploy'
+                sh 'rm -rf /usr/share/nginx/html/*'
+                sh 'cp -r /var/lib/jenkins/workspace/eletronic-store-front/build/*  /usr/share/nginx/html'
+
                 echo "Deployed react app"
             }
         }
