@@ -17,7 +17,7 @@ pipeline {
         stage('Delivery') {
             steps {
                 //sh 'npm run deploy'
-                sh 'cp -r /var/lib/jenkins/workspace/eletronic-store-front/build/*  /usr/share/nginx/html/'
+                //sh 'cp -r /var/lib/jenkins/workspace/eletronic-store-front/build/*  /usr/share/nginx/html/'
                 echo "Deployed react app"
             }
         }
