@@ -1,30 +1,24 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000'
-        }
-    }
-    environment {
-        CI = 'true'
-    }
+
+    agent any
+    
     stages {
-        stage('Build') {
+        stage('Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh 'npm run-script build'
             }
         }
-        stage('Deliver') {
+        stage('Delivery') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                //sh 'aws s3 cp --recursive build s3://react-test-nick --region eu-west-2'
+                echo "Deployed react app"
             }
         }
+        
     }
 }
