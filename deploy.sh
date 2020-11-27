@@ -12,10 +12,7 @@ echo Step 3/4: Creating new production image;
     npm run build:prod;
     mv Dockerfile Dockerfile.prod.off;
     docker push fernandoguide/zen-production;
-echo Step 4/4: Creating elastic beanstalk environment;
-eb $1 zen-production;
-else
-    echo Please commit your changes first.;
-fi
+echo Step 4/4: Finish ;
+
 
 
